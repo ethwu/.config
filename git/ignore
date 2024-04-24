@@ -1,0 +1,23 @@
+attic/
+
+# Environment files.
+.env
+.envrc
+
+# Windows thumbnails.
+Thumbs.db
+# macOS Finder metadata.
+.DS_Store
+# macOS folder icons.
+Icon
+# VSCode files.
+.vscode/
+*.code-workspace
+
+# Python virtual environments.
+.venv/
+venv/
+
+# PNPM error logs.
+.pnpm-debug.log
+

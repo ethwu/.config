@@ -1,0 +1,48 @@
+[color]
+	ui = auto
+[core]
+	editor = nvim
+[diff]
+	colorMoved = default
+[init]
+	defaultBranch = main
+[merge]
+	conflictstyle = diff3
+[user]
+	name = Ethan Wu
+	email = ethanwu@cs.ucsb.edu
+
+[delta]
+	syntax-theme = base16-catalina
+	navigate = true
+	line-numbers = true
+	tabs = 0
+
+	file-style = yellow bold
+	file-decoration-style = ''
+	inline-hint-style = brightmagenta blink
+	; commit-decoration-style = box
+	hunk-header-style = file line-number
+	hunk-header-decoration-style = blue ; ul
+	hunk-header-file-style = blue bold italic
+	hunk-header-line-number-style = yellow bold
+
+	zero-style = syntax dim
+	plus-style = green ul
+	plus-non-emph-style = syntax dim
+	plus-emph-style = plus-style
+	minus-style = red ul
+	minus-non-emph-style = plus-non-emph-style
+	minus-emph-style = minus-style
+
+	line-numbers-plus-style = green bold
+	line-numbers-minus-style = red bold
+
+	whitespace-error-style = ul
+
+	# Styles for moved lines.
+	map-styles = bold magenta => yellow ul, bold cyan => blue ul
+
+	line-numbers-left-format = "{nm:>4}┊"
+	line-numbers-right-format = "{np:>4}│"
+
