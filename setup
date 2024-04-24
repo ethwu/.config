@@ -1,0 +1,20 @@
+#! /bin/sh
+
+# Get the path to the config directory.
+config_home="${XDG_CONFIG_HOME:="$HOME"/.config}"
+
+# Change directories into the home directory.
+cd ~
+
+# link_rcfile <source> <target>
+# Create a link to the given rcfile. If it already exists, then rename
+# the existing rcfile with a `.bak` extension.
+link_rcfile() {
+	[ -e "$2" ] && mv "$2" "$2".bak
+	ln -s "$1" "$2"
+}
+
+# Link shell startup scripts for `bash`.
+link_rcfile "$config_home"/profile "$HOME"/.profile
+link_rcfile "$config_home"/bash/bashrc "$HOME"/.bashrc
+link_rcfile "$config_home"/bash/bash_profile "$HOME"/.bash_profile
