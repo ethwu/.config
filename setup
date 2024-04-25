@@ -18,3 +18,4 @@ link_rcfile() {
 link_rcfile "$config_home"/profile "$HOME"/.profile
 link_rcfile "$config_home"/bash/bashrc "$HOME"/.bashrc
 link_rcfile "$config_home"/bash/bash_profile "$HOME"/.bash_profile
+link_rcfile "$config_home"/zsh/zshenv "$HOME"/.zshenv

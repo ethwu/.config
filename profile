@@ -1,5 +1,5 @@
 #! /bin/sh
-source_if_exists() { [ -f "$1" ] && . "$1" ; }
+source_if_exists() { [ -f "$1" ] && . "$@" ; }
 
 # Set up the XDG Base Directories.
 export XDG_BIN_HOME="${XDG_BIN_HOME:="$HOME"/.local/bin}"
