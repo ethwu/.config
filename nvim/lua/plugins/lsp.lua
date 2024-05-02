@@ -78,7 +78,8 @@ return {
           -- this first function is the "default handler"
           -- it applies to every language server without a "custom handler"
           function(server_name)
-            require('lspconfig')[server_name].setup({})
+            local lspconfig = require'lspconfig'
+            lspconfig.nushell.setup{}
           end,
 
           -- this is the "custom handler" for `lua_ls`
