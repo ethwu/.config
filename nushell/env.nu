@@ -2,36 +2,82 @@
 #
 # version = "0.93.0"
 
-def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
-        null => $env.PWD
-        '' => '~'
-        $relative_pwd => ([~ $relative_pwd] | path join)
+# Predefined prompt segments.
+module prompt_segment {
+    # Get a prompt segment for the current working directory.
+    export def working_directory [] {
+        let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+            null => $env.PWD
+            '' => '~'
+            $relative_pwd => ([~ $relative_pwd] | path join)
+        }
+        let path_color = (if (is-admin) { ansi cyan_bold } else { ansi green_bold })
+        let separator_color = (if (is-admin) { ansi light_cyan_bold } else { ansi light_green_bold })
+        let path_segment = $"($path_color)($dir)"
+
+        $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
     }
 
-    let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-    let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
+    # Get the time in magenta with green separators and am/pm underlined.
+    export def time [] {
+        ([
+            (ansi reset)
+            (ansi magenta)
+            (date now | format date '%x %X') # try to respect user's locale
+        ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
+            str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
+    }
 
-    $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+    # Get the duration of the last command in yellow.
+    export def duration [] {
+        let elapsed = $env.CMD_DURATION_MS | into int | into duration --unit ms
+        $"(ansi reset)(ansi yellow)($elapsed)"
+    }
+
+    # Get the exit code of the last command.
+    export def last_exit_code [] {
+        let exit_code = $env.LAST_EXIT_CODE
+        let color = if $exit_code == 0 { 'light_red' } else { 'light_red_bold' }
+        $"(ansi reset)(ansi $color)($exit_code)"
+    }
+
+    # Get the history name in red.
+    export def history_number [] {
+        $"(ansi reset)(ansi light_red)(history | length)"
+    }
+
+    # Get the user and hostname in green, separated by a yellow `@`.
+    export def userhost [] {
+        $"(ansi reset)"
+        ([
+            (ansi reset) (ansi green_italic)
+            ($env.USER)
+            (ansi reset) (ansi yellow)
+            '@'
+            (ansi reset) (ansi green_italic)
+            ($env.HOSTNAME)
+        ] | str join)
+    }
 }
 
+use prompt_segment
+
+# Generate the left prompt.
+def create_left_prompt [] {
+    ([
+        (prompt_segment last_exit_code)
+        $"(ansi reset)[(prompt_segment working_directory)(ansi reset)]"
+        (prompt_segment history_number)
+    ] | str join (char space))
+}
+
+# Generate the right prompt.
 def create_right_prompt [] {
-    # create a right prompt in magenta with green separators and am/pm underlined
-    let time_segment = ([
-        (ansi reset)
-        (ansi magenta)
-        (date now | format date '%x %X') # try to respect user's locale
-    ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
-        str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
-
-    let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
-        (ansi rb)
-        ($env.LAST_EXIT_CODE)
-    ] | str join)
-    } else { "" }
-
-    ([$last_exit_code, (char space), $time_segment] | str join)
+    mut segments = [(prompt_segment duration)]
+    if ('SSH_CLIENT' in $env or 'SSH_TTY' in $env) {
+        $segments = ($segments | append (prompt_segment userhost))
+    }
+    $segments | str join (char space)
 }
 
 # Use nushell functions to define your right and left prompt
@@ -41,10 +87,10 @@ $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = {|| "> " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
-$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
+$env.PROMPT_INDICATOR = {|| $" (ansi blue_bold)> " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| $" (ansi blue_bold)> " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| $" (ansi green_bold)> " }
+$env.PROMPT_MULTILINE_INDICATOR = {|| $"(ansi blue_bold)::: " }
 
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.
@@ -98,3 +144,5 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
+
+source ($nu.default-config-dir | path join "local/env.nu")

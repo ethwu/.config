@@ -19,3 +19,7 @@ link_rcfile "$config_home"/profile "$HOME"/.profile
 link_rcfile "$config_home"/bash/bashrc "$HOME"/.bashrc
 link_rcfile "$config_home"/bash/bash_profile "$HOME"/.bash_profile
 link_rcfile "$config_home"/zsh/zshenv "$HOME"/.zshenv
+
+# nushell
+mkdir -p "$config_home"/nushell/local/
+touch "$config_home"/nushell/local/env.nu "$config_home"/nushell/local/config.nu

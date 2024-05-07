@@ -16,6 +16,8 @@ fi
 
 if command -v nvim &> /dev/null ; then
 	alias vim=nvim
+	export EDITOR=nvim
+	export VISUAL=nvim
 fi
 
 if command -v just &> /dev/null ; then
