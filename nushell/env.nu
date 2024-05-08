@@ -37,13 +37,13 @@ module prompt_segment {
     # Get the exit code of the last command.
     export def last_exit_code [] {
         let exit_code = $env.LAST_EXIT_CODE
-        let color = if $exit_code == 0 { 'light_red' } else { 'light_red_bold' }
+        let color = if $exit_code == 0 { 'red' } else { 'red_bold' }
         $"(ansi reset)(ansi $color)($exit_code)"
     }
 
     # Get the history name in red.
     export def history_number [] {
-        $"(ansi reset)(ansi light_red)(history | length)"
+        $"(ansi reset)(ansi red)(history | length)"
     }
 
     # Get the user and hostname in green, separated by a yellow `@`.
@@ -55,7 +55,7 @@ module prompt_segment {
             (ansi reset) (ansi yellow)
             '@'
             (ansi reset) (ansi green_italic)
-            ($env.HOSTNAME)
+            (sys | get host | get hostname)
         ] | str join)
     }
 }
@@ -85,11 +85,13 @@ $env.PROMPT_COMMAND = {|| create_left_prompt }
 # FIXME: This default is not implemented in rust code as of 2023-09-08.
 $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
+let prompt_char = if (is-admin) { '#' } else { '>' }
+
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = {|| $" (ansi blue_bold)> " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| $" (ansi blue_bold)> " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| $" (ansi green_bold)> " }
+$env.PROMPT_INDICATOR = {|| $" (ansi blue_bold)($prompt_char) " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| $" (ansi blue_bold)($prompt_char) " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| $" (ansi green_bold)($prompt_char) " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| $"(ansi blue_bold)::: " }
 
 # If you want previously entered commands to have a different prompt from the usual one,
