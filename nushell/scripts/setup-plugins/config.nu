@@ -5,8 +5,9 @@
 
 # The prefix to save cached setup files to.
 const plugin_prefix = ($nu.default-config-dir | path join local plugins)
+# A no-op script.
+const noop = ($nu.default-config-dir | path join scripts noop.nu)
 
 const zoxide = ($plugin_prefix | path join zoxide.nu)
-if ($zoxide | path exists) {
-    source $zoxide
-}
+source (if ($zoxide | path exists) { $zoxide } else { $noop })
+
