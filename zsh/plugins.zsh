@@ -7,15 +7,15 @@ envcache="$ZDOTDIR/env-setup-cache"
 mkdir -p "$envcache"
 
 # Cache environment setup scripts.
-function zshrc-cache-env-setup-of() {
-    cmd="$1"
-    shift
+zshrc-cache-env-setup-of() {
+    cmd="$1" ; shift
 
-    if type "$cmd" > /dev/null && [[ ! -f "$envcache/$cmd" ]] ; then
-        "$cmd" $@ > "$envcache/$cmd"
+    if type "$cmd" > /dev/null ; then
+        if [[ ! -f "$envcache"/"$cmd" ]] ; then
+            "$cmd" "$@" > "$envcache"/"$cmd"
+        fi
+        source "$envcache"/"$cmd"
     fi
-
-    source "$envcache/$cmd"
 }
 
 [[ -f "$ZDOTDIR/local/plugins.zsh" ]] && source "$ZDOTDIR/local/plugins.zsh"
