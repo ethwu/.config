@@ -1,0 +1,9 @@
+# Load environment variables from a file.
+load-env() {
+	if [ "$#" -lt 1 ] ; then
+		>&2 echo 'Usage: load-env <env-file>'
+		exit 1
+	fi
+	export "$(xargs < "$1")"
+}
+
