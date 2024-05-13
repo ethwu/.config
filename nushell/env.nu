@@ -2,30 +2,29 @@
 #
 # version = "0.93.0"
 
-# Directories to search for scripts when calling source or use
-# The default for this is $nu.default-config-dir/scripts
+# Make scripts available for sourcing.
 $env.NU_LIB_DIRS = [
-    ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+    ($nu.default-config-dir | path join scripts)
 ]
 
+use setup
 # Load environment variables from `~/.profile`.
-source profile.nu
-
-# Import the prompt definitions.
-use prompt.nu
+setup profile load-environment
+# Add paths to PATH.
+setup profile setup-path
 
 # Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| prompt create_left_prompt }
+$env.PROMPT_COMMAND = {|| setup prompt create_left_prompt }
 # FIXME: This default is not implemented in rust code as of 2023-09-08.
-$env.PROMPT_COMMAND_RIGHT = {|| prompt create_right_prompt }
+$env.PROMPT_COMMAND_RIGHT = {|| setup prompt create_right_prompt }
 
-let prompt_char = if (is-admin) { '#' } else { '>' }
+$env.PROMPT_CHAR = if (is-admin) { '#' } else { '>' }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = {|| $" (ansi blue_bold)($prompt_char) " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| $" (ansi blue_bold)($prompt_char) " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| $" (ansi green_bold)($prompt_char) " }
+$env.PROMPT_INDICATOR = {|| $" (ansi blue_bold)($env.PROMPT_CHAR) " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| $" (ansi blue_bold)($env.PROMPT_CHAR) " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| $" (ansi green_bold)($env.PROMPT_CHAR) " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| $"(ansi blue_bold)::: " }
 
 # If you want previously entered commands to have a different prompt from the usual one,
@@ -75,6 +74,13 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-source setup-plugins/env.nu
-
 # source ($nu.default-config-dir | path join "local/env.nu")
+
+# Directories to search for scripts when calling source or use
+# The default for this is $nu.default-config-dir/scripts
+$env.NU_LIB_DIRS = [
+    ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+]
+
+# Set up plugins.
+setup plugins env

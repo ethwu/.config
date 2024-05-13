@@ -102,7 +102,7 @@ $env.config = {
     buffer_editor: "vi" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
     bracketed_paste: true # enable bracketed paste, currently useless on windows
-    edit_mode: emacs # emacs, vi
+    edit_mode: vi # emacs, vi
     shell_integration: {
         # osc2 abbreviates the path if in the home_dir, sets the tab/window title, shows the running command in the tab/window title
         osc2: true
@@ -761,12 +761,11 @@ $env.config = {
     ]
 }
 
-# Set up plugins.
-source setup-plugins/config.nu
-
+use setup
 # Set up the aliases.
-source aliases.nu
-
-# Print a welcome message.
-use welcome.nu
-welcome | print
+setup aliases
+# Set up plugins.
+setup plugins config
+# Print the welcome message.
+setup welcome | print
+hide setup

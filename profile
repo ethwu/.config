@@ -15,7 +15,7 @@ export PATH="$LOCAL_PREFIX/bin:$HOME/bin:/opt/local/bin:$PATH"
 
 # C
 export C_INCLUDE_PATH="$LOCAL_PREFIX"/include		# -I
-export CPLUS_INCLUDE_PATh="$LOCAL_PREFIX"/include	# -I
+export CPLUS_INCLUDE_PATH="$LOCAL_PREFIX"/include	# -I
 export LIBRARY_PATH="$LOCAL_PREFIX"/lib			# -L
 export PKG_CONFIG_PATH="$LOCAL_PREFIX"/lib/pkgconfig
 
