@@ -14,12 +14,12 @@ export const colors = {
         },
         "null": "cyan_italic",
         "path": {
-            "directory": "light_purple_underline",
-            "file": "light_green_italic"
+            "file": "light_green_italic",
+            "directory": "light_purple_underline"
         },
         "string": {
             "binary": "blue_bold",
-            "literal": "green",
+            "literal": "purple_italic",
             "path": "light_green"
         },
         "time": "yellow"
@@ -133,7 +133,7 @@ export def main [] { return {
     shape_and: { color: $colors.language.keyword, attr: b }
     shape_binary: { color: $colors.language.keyword, attr: b }
     shape_block: $colors.punctuation.block
-    shape_bool: {|| bool }
+    shape_bool: { bool }
     shape_closure: $colors.punctuation.block
     shape_custom: { color: $colors.shell.command, attr: italic }
     shape_datetime: $colors.type.date
@@ -142,7 +142,7 @@ export def main [] { return {
     shape_externalarg: $colors.language.argument
     shape_external_resolved: $colors.shell.command
     shape_filepath: $colors.type.string.path
-    shape_filesize: {|| file-size }
+    shape_filesize: { file-size }
     shape_flag: $colors.shell.flag
     shape_float: $colors.type.number.float
     # shapes are used to change the cli syntax highlighting
