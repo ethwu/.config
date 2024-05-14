@@ -22,4 +22,5 @@ do {
 
     load-plugin zoxide init nushell '--cmd' k
     load-plugin mise activate nu
+    load-plugin is init nu
 }
