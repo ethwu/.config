@@ -2,6 +2,12 @@
 
 # Predefined prompt segments.
 module prompt_segment {
+    # Get an indicator for if `direnv` is loaded.
+    export def direnv [] {
+        if ((^direnv status --json | from json).state.loadedRC != null) {
+                $"(ansi yellow)🮹🮺"
+        } else { "" }
+    }
     # Get the duration of the last command in yellow.
     export def duration [] {
         let elapsed = $env.CMD_DURATION_MS | into int | into duration --unit ms
@@ -136,16 +142,16 @@ export def left [] -> string {
         (bracket (prompt_segment working_directory))
         (bracket (prompt_segment vcs))
         (prompt_segment history_number)
-    ] | filter { || is-not-empty } | str join (char space))
+    ] | filter { is-not-empty } | str join (char space))
 }
 
 # Generate the right prompt.
 export def right [] -> string {
-    mut segments = [(prompt_segment duration)]
-    if ('SSH_CLIENT' in $env or 'SSH_TTY' in $env) {
-        $segments = ($segments | append (prompt_segment userhost))
-    }
-    $segments | str join (char space)
+    ([
+        (if (which direnv | is-not-empty) { prompt_segment direnv })
+        (prompt_segment duration)
+        (if ('SSH_CLIENT' in $env or 'SSH_TTY' in $env) { prompt_segment userhost })
+    ] | filter { is-not-empty } | str join (char space))
 }
 
 # Highlight non-zero exit codes.
