@@ -20,10 +20,11 @@ export-env {
     }
 
     # Add paths to `PATH`.
-    def --env add-to-path [path: list] {
-        $env.PATH = ($path ++ ($env.PATH | split row (char esep)) | uniq)
+    def --env add-to-path [prepend: list, append: list] {
+        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | uniq)
 
         # Add the same directories to the plugin search path.
+        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | uniq)
         $env.NU_PLUGIN_DIRS ++= $env.PATH
     }
 
@@ -52,16 +53,19 @@ export-env {
             (if 'GEM_HOME' in $env { $env.GEM_HOME | path join bin })
             (if 'GOPATH' in $env { $env.GOPATH | path join bin })
             (if 'RYE_HOME' in $env { $env.RYE_HOME | path join shims })
-        ]
+        ] []
     }
     let local_env = ($nu.default-config-dir | path join local env.toml)
     if ($local_env | path exists) {
-        ($local_env
-            | open
-            | get env
-            | flatten
-            | load-environment)
-        add-to-path (open $local_env | get extend-path)
+        let local_env = (open $local_env)
+        if 'env' in $local_env {
+            ($local_env).env | flatten | load-environment
+        }
+        if 'path' in $local_env {
+            let prepend = if 'prepend' in $local_env.path { $local_env.path.prepend } else { [] }
+            let append = if 'append' in $local_env.path { $local_env.path.append } else { [] }
+            add-to-path $prepend $append
+        }
     }
 }
 
