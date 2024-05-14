@@ -68,9 +68,7 @@ module prompt_segment {
             $"(ansi red)(open $rewrite_remaining | into int)/(open $rewrite_total | into int)"
         }
 
-        let branch_symbol = if $detached { "@" } else if $g.branch != no_branch {
-            if $g.tag != no_tag { "#" } else { $"(ansi cyan) " }
-        }
+        let branch_symbol = if $detached { "@" } else if $g.branch != no_branch { $"(ansi cyan) " } else { "" }
         ([
             $"(ansi reset)($branch_symbol)(ansi cyan)($g.branch)"
             (if $g.tag != no_tag and $g.branch != $g.branch { $"(ansi reset)#(ansi cyan)($g.tag)" })
@@ -168,7 +166,7 @@ export def character [] nothing -> string {
 }
 
 # Set the prompt character.
-export def --env set-character [] nothing -> nothing {
+export def --env "character set-env" [] nothing -> nothing {
     $env.PROMPT_CHARACTER = (character)
 }
 
@@ -178,22 +176,22 @@ export def indicator [] -> string {
 }
 
 # Get the multiline continuation indicator.
-export def indicator_multiline [] {
+export def "indicator multiline" [] {
     $"(exit_code_highlight blue_bold red_bold):::(ansi reset) "
 }
 
 # Get the prompt indicator for `vi` insert mode.
-export def indicator_vi_insert [] -> string {
+export def "indicator vi insert" [] -> string {
     indicator
 }
 
 # Get the prompt indicator for `vi` normal mode.
-export def indicator_vi_normal [] -> string {
+export def "indicator vi normal" [] -> string {
     $" (exit_code_highlight green_bold)($env.PROMPT_CHARACTER)(ansi reset) "
 }
 
 # Get the prompt indicator for searching the menu.
-export def indicator_menu [] -> string {
+export def "indicator menu" [] -> string {
     $" (ansi yellow_bold)|(ansi reset) "
 }
 
@@ -202,11 +200,11 @@ export def --env setup [] nothing -> nothing {
     $env.PROMPT_COMMAND = { left }
     $env.PROMPT_COMMAND_RIGHT = { right }
 
-    set-character
+    character set-env
     $env.PROMPT_INDICATOR = { indicator }
-    $env.PROMPT_INDICATOR_VI_INSERT = { indicator_vi_insert }
-    $env.PROMPT_INDICATOR_VI_NORMAL = { indicator_vi_normal }
-    $env.PROMPT_MULTILINE_INDICATOR = { indicator_multiline }
+    $env.PROMPT_INDICATOR_VI_INSERT = { indicator vi insert }
+    $env.PROMPT_INDICATOR_VI_NORMAL = { indicator vi normal }
+    $env.PROMPT_MULTILINE_INDICATOR = { indicator multiline }
 
     # $env.TRANSIENT_PROMPT_COMMAND = {|| "🚀 " }
     # $env.TRANSIENT_PROMPT_INDICATOR = {|| "" }

@@ -169,7 +169,7 @@ $env.config = {
         {
             name: completion_menu
             only_buffer_difference: false
-            marker: (prompt indicator_menu)
+            marker: (prompt indicator menu)
             type: {
                 layout: columnar
                 columns: 4
