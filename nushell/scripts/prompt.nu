@@ -195,6 +195,16 @@ export def "indicator menu" [] -> string {
     $" (ansi yellow_bold)|(ansi reset) "
 }
 
+# Get the prompt indicator for the history.
+export def "indicator history" [] -> string {
+    $" (ansi blue_bold)?(ansi reset) "
+}
+
+# Get the prompt indicator for searching the help.
+export def "indicator help" [] -> string {
+    $" (ansi purple_bold)?(ansi reset) "
+}
+
 # Set up the prompt.
 export def --env setup [] nothing -> nothing {
     $env.PROMPT_COMMAND = { left }

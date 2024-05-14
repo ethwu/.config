@@ -187,7 +187,7 @@ $env.config = {
         {
             name: ide_completion_menu
             only_buffer_difference: false
-            marker: "| "
+            marker: (prompt indicator menu)
             type: {
                 layout: ide
                 min_completion_width: 0,
@@ -220,7 +220,7 @@ $env.config = {
         {
             name: history_menu
             only_buffer_difference: true
-            marker: "? "
+            marker: (prompt indicator history)
             type: {
                 layout: list
                 page_size: 10
@@ -234,7 +234,7 @@ $env.config = {
         {
             name: help_menu
             only_buffer_difference: true
-            marker: "? "
+            marker: (prompt indicator help)
             type: {
                 layout: description
                 columns: 4
