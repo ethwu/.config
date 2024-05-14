@@ -10,6 +10,7 @@ export-env {
             | update value { |row|
                 $row.value
                     | str replace --all --regex '~|\$HOME' $env.HOME
+                    | str replace --all '$XDG_BIN_HOME' $env.XDG_BIN_HOME
                     | str replace --all '$XDG_CACHE_HOME' $env.XDG_CACHE_HOME
                     | str replace --all '$XDG_CONFIG_HOME' $env.XDG_CONFIG_HOME
                     | str replace --all '$XDG_DATA_HOME' $env.XDG_DATA_HOME
@@ -21,10 +22,10 @@ export-env {
 
     # Add paths to `PATH`.
     def --env add-to-path [prepend: list, append: list] {
-        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | uniq)
+        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | path expand | uniq)
 
         # Add the same directories to the plugin search path.
-        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | uniq)
+        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | path expand | uniq)
         $env.NU_PLUGIN_DIRS ++= $env.PATH
     }
 
