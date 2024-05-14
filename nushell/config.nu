@@ -768,6 +768,8 @@ $env.config = {
 source ./setup/aliases.nu
 # Set up plugins.
 source ./setup/plugins/config.nu
+# Set up completions.
+source ./setup/plugins/completions.nu
 
 # Print the welcome message.
 use ./scripts/welcome.nu ; welcome

@@ -2,13 +2,15 @@
 #
 # version = "0.93.0"
 
+# Add environment variables and update `PATH`.
+source ./setup/profile.nu
+
 # Make scripts available for sourcing.
 $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join scripts)
+    ($nu.default-config-dir | path join nu_scripts)
 ]
-
-# Add environment variables and update `PATH`.
-source ./setup/profile.nu
+$env.NU_LIB_DIRS | print
 
 # Prompt module.
 use ./scripts/prompt.nu

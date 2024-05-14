@@ -1,3 +1,4 @@
 [submodule "nushell/scripts/nu_scripts"]
-	path = nushell/scripts/nu_scripts
+	path = nushell/nu_scripts
 	url = https://github.com/nushell/nu_scripts
+	shallow = true
