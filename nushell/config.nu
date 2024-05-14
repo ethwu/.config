@@ -3,7 +3,7 @@
 # version = "0.93.1"
 
 # Get `catalina` theme.
-use ($nu.default-config-dir | path join theme catalina.nu)
+use ./theme
 
 # External completer example
 # let carapace_completer = {|spans|
@@ -67,7 +67,7 @@ $env.config = {
     history: {
         max_size: 100_000 # Session has to be reloaded for this to take effect
         sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-        file_format: "plaintext" # "sqlite" or "plaintext"
+        file_format: "sqlite" # "sqlite" or "plaintext"
         isolation: false # only available with sqlite file_format. true enables history isolation, false disables it. true will allow the history to be isolated to the current session using up/down arrows. false will allow the history to be shared across all sessions.
     }
 
@@ -91,11 +91,11 @@ $env.config = {
 
     cursor_shape: {
         emacs: blink_block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (line is the default)
-        vi_insert: blink_line # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (block is the default)
+        vi_insert: blink_block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (block is the default)
         vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
     }
 
-    color_config: (catalina) # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
+    color_config: (theme catalina) # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
     use_grid_icons: false
     footer_mode: "20" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
@@ -169,7 +169,7 @@ $env.config = {
         {
             name: completion_menu
             only_buffer_difference: false
-            marker: " | "
+            marker: (prompt indicator_menu)
             type: {
                 layout: columnar
                 columns: 4
@@ -761,11 +761,10 @@ $env.config = {
     ]
 }
 
-use setup
-# Set up the aliases.
-setup aliases
+# # Set up the aliases.
+source ./setup/aliases.nu
 # Set up plugins.
-setup plugins config
+source ./setup/plugins/config.nu
+
 # Print the welcome message.
-setup welcome | print
-hide setup
+use ./scripts/welcome.nu ; welcome
