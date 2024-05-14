@@ -3,7 +3,7 @@ use custom-completions/ack/ack-completions.nu *
 use custom-completions/bat/bat-completions.nu *
 use custom-completions/cargo/cargo-completions.nu *
 use custom-completions/curl/curl-completions.nu *
-use custom-completions/git/git-completions.nu *
+# use custom-completions/git/git-completions.nu *
 use custom-completions/just/just-completions.nu *
 use custom-completions/less/less-completions.nu *
 use custom-completions/make/make-completions.nu *

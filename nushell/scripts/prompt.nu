@@ -26,6 +26,14 @@ module prompt_segment {
         $"(ansi reset)(ansi $color)($exit_code)"
     }
 
+    # Get the current `nushell` shell number.
+    export def shell [] {
+        let s = shells
+        if ($s | length) <= 1 { return "" }
+        let this_shell = ($s | enumerate | where item.active | first)
+        $"(ansi reset)[(ansi cyan_bold)($this_shell.index)(ansi reset)]"
+    }
+
     # Get the time in magenta with green separators and am/pm underlined.
     export def time [] {
         ([
@@ -138,6 +146,7 @@ def bracket [segment: string] {
 # Generate the left prompt.
 export def left [] -> string {
     ([
+        (prompt_segment shell)
         (prompt_segment last_exit_code)
         (bracket (prompt_segment working_directory))
         (bracket (prompt_segment vcs))
