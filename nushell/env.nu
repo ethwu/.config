@@ -10,7 +10,6 @@ $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join scripts)
     ($nu.default-config-dir | path join nu_scripts)
 ]
-$env.NU_LIB_DIRS | print
 
 # Prompt module.
 use ./scripts/prompt.nu
