@@ -5,25 +5,26 @@ module prompt_segment {
     # Get an indicator for if `direnv` is loaded.
     export def direnv [] {
         if ((^direnv status --json | from json).state.loadedRC != null) {
-                $"(ansi yellow)🮹🮺"
+                (ansi yellow) + "🮹🮺"
         } else { "" }
     }
     # Get the duration of the last command in yellow.
     export def duration [] {
-        let elapsed = $env.CMD_DURATION_MS | into int | into duration --unit ms
-        $"(ansi reset)(ansi yellow)($elapsed)"
+        (ansi reset) + (ansi yellow) + (
+            $env.CMD_DURATION_MS | into int | into duration --unit ms | into string
+        )
     }
 
     # Get the history name in red.
     export def history_number [] {
-        $"(ansi reset)(ansi red)(history | length)"
+        (ansi reset) + (ansi red) + (history | length | into string)
     }
 
     # Get the exit code of the last command.
     export def last_exit_code [] {
         let exit_code = $env.LAST_EXIT_CODE
         let color = if $exit_code == 0 { 'red' } else { 'red_bold' }
-        $"(ansi reset)(ansi $color)($exit_code)"
+        (ansi reset) + (ansi $color) + ($exit_code | into string)
     }
 
     # Get the current `nushell` shell number.
@@ -46,10 +47,9 @@ module prompt_segment {
 
     # Get the user and hostname in green, separated by a yellow `@`.
     export def userhost [] {
-        $"(ansi reset)"
         ([
             (ansi reset) (ansi green_italic)
-            ($env.USER)
+            $env.USER
             (ansi reset) (ansi yellow)
             '@'
             (ansi reset) (ansi green_italic)
@@ -118,18 +118,26 @@ module prompt_segment {
         ] | filter { is-not-empty } | str join " ")
     }
 
+    def colorize_working_directory [separator_color: string, path_color: string] string -> string {
+        str replace --all (char path_sep) (
+            $separator_color + (char path_sep) + $path_color
+        )
+    }
+
     # Get a prompt segment for the current working directory.
     export def working_directory [] {
-        let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
-            null => $env.PWD
-            '' => '~'
-            $relative_pwd => ([~ $relative_pwd] | path join)
+        const tilde = (ansi light_green_bold) + "~"
+        let path_color = ((ansi reset) + (if (is-admin) { ansi blue_italic } else { ansi green_italic }))
+        let separator_color = ((ansi reset) + (if (is-admin) { ansi light_blue_italic } else { ansi light_green_italic }))
+        let home = (if (is-admin) { (ansi light_blue_bold) + "/root" } else { $tilde })
+        match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+            null => ($env.PWD | colorize_working_directory $separator_color $path_color)
+            '' => $home
+            $relative_pwd => ([
+                ($home + $separator_color + (char path_sep) + $path_color)
+                ($relative_pwd | colorize_working_directory $separator_color $path_color)
+            ] | str join)
         }
-        let path_color = (if (is-admin) { ansi cyan_bold } else { ansi green_bold })
-        let separator_color = (if (is-admin) { ansi light_cyan_bold } else { ansi light_green_bold })
-        let path_segment = $"($path_color)($dir)"
-
-        $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
     }
 }
 
@@ -138,7 +146,7 @@ use prompt_segment
 # Wrap the given prompt segment in brackets if it has any contents.
 def bracket [segment: string] {
     if $segment != '' {
-        $"(ansi reset)[($segment)(ansi reset)]"
+        (ansi reset) + "[" + $segment + (ansi reset) + "]"
     } else {
         ""
     }
@@ -187,8 +195,12 @@ export def --env "character set-env" [] nothing -> nothing {
 }
 
 # Get the prompt indicator.
-export def indicator [] -> string {
-    $" (exit_code_highlight blue_bold red_bold)($env.PROMPT_CHARACTER)(ansi reset) "
+export def indicator [] nothing -> string {
+    ((char space) +
+        (exit_code_highlight blue_bold red_bold) +
+        $env.PROMPT_CHARACTER +
+        (ansi reset) +
+        (char space))
 }
 
 # Get the multiline continuation indicator.
