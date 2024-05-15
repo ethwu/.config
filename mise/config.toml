@@ -1,3 +1,4 @@
 [tools]
 node = "lts"
 java = "lts"
+python = "3.12"
