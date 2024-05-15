@@ -59,6 +59,7 @@ module prompt_segment {
 
     # Get VCS information.
     export def vcs [] {
+        if (which gstat | is-empty) { return "" }
         let g = gstat
         if $g.repo_name == no_repository { return "" }
         let git_dir = (git rev-parse --git-dir | path expand)
