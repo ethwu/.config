@@ -113,11 +113,11 @@ export def main [] { return {
     # leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
     header: $colors.shell.header
     empty: $colors.shell.empty
-    bool: {|| bool }
+    bool: { bool }
     int: $colors.type.number.int
-    filesize: {|| file-size }
-    duration: {|| time-elapsed }
-    date: {|| date-time }
+    filesize: { file-size }
+    duration: { time-elapsed }
+    date: { date-time }
     range: $colors.type.number.range
     float: $colors.type.number.float
     string: $colors.type.string.literal

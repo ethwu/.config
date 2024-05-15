@@ -114,7 +114,7 @@ module prompt_segment {
                     (if $g.wt_type_changed > 0 { $"(ansi purple_dimmed)÷($g.wt_type_changed)" })
                 ] | filter { is-not-empty } | str join $"(ansi reset)/")"
             })
-        ] | where { || is-not-empty } | str join " ")
+        ] | filter { is-not-empty } | str join " ")
     }
 
     # Get a prompt segment for the current working directory.
