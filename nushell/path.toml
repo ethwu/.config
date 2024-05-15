@@ -1,0 +1,13 @@
+[path]
+# Paths to prepend to the `PATH`.
+prepend = [
+	"$CARGO_HOME/bin",
+	"$GEM_HOME/bin",
+	"$GOPATH/bin",
+	"$RYE_HOME/bin",
+	"/opt/homebrew/bin",
+	"/opt/local/bin",
+	"/usr/local/bin",
+]
+append = []
+

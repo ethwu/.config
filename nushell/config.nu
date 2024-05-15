@@ -775,3 +775,4 @@ use ./scripts *
 
 # Print the welcome message.
 welcome
+

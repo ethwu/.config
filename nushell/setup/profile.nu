@@ -3,8 +3,6 @@
 export-env {
     use ($nu.default-config-dir | path join scripts env-string.nu)
 
-    let local_env = ($nu.default-config-dir | path join local env.toml)
-
     # Load environment variables from `env.toml`.
     def --env load-environment [] string -> nothing {
         ($in
@@ -16,12 +14,11 @@ export-env {
 
     # Add paths to `PATH`.
     def --env add-to-path [prepend: list, append: list] {
-        let prepend = ($prepend | each { env-string })
-        let append = ($append | each { env-string })
-        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | path expand | uniq)
+        let prepend = ($prepend | each { env-string | path expand })
+        let append = ($append | each { env-string | path expand })
+        $env.PATH = (($prepend ++ $env.PATH ++ $append) | uniq)
 
         # Add the same directories to the plugin search path.
-        $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | path expand | uniq)
         $env.NU_PLUGIN_DIRS ++= $env.PATH
     }
 
@@ -43,14 +40,19 @@ export-env {
             | open
             | flatten
             | load-environment)
-        add-to-path [
-            $env.XDG_BIN_HOME
-            ($env.HOME | path join .local bin)
-            (if 'CARGO_HOME' in $env { $env.CARGO_HOME | path join bin })
-            (if 'GEM_HOME' in $env { $env.GEM_HOME | path join bin })
-            (if 'GOPATH' in $env { $env.GOPATH | path join bin })
-            (if 'RYE_HOME' in $env { $env.RYE_HOME | path join shims })
-        ] []
+    }
+
+    # Convert the `PATH` from the host process.
+    $env.PATH = ($env.PATH | split row (char esep))
+
+    let global_path = ($nu.default-config-dir | path join path.toml)
+    if ($global_path | path exists) {
+        let global_path = (open $global_path)
+        if 'path' in $global_path {
+            let prepend = if 'prepend' in $global_path.path { $global_path.path.prepend } else { [] }
+            let append = if 'append' in $global_path.path { $global_path.path.append } else { [] }
+            add-to-path $prepend $append
+        }
     }
     let local_env = ($nu.default-config-dir | path join local env.toml)
     if ($local_env | path exists) {
