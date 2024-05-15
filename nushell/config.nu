@@ -771,5 +771,7 @@ source ./setup/plugins/config.nu
 # Set up completions.
 source ./setup/plugins/completions.nu
 
+use ./scripts *
+
 # Print the welcome message.
-use ./scripts/welcome.nu ; welcome
+welcome

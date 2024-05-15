@@ -1,27 +1,23 @@
 # Load common environment variables.
 
 export-env {
+    use ($nu.default-config-dir | path join scripts env-string.nu)
+
     let local_env = ($nu.default-config-dir | path join local env.toml)
 
     # Load environment variables from `env.toml`.
     def --env load-environment [] string -> nothing {
         ($in
             | transpose key value
-            | update value { |row|
-                $row.value
-                    | str replace --all --regex '~|\$HOME' $env.HOME
-                    | str replace --all '$XDG_BIN_HOME' $env.XDG_BIN_HOME
-                    | str replace --all '$XDG_CACHE_HOME' $env.XDG_CACHE_HOME
-                    | str replace --all '$XDG_CONFIG_HOME' $env.XDG_CONFIG_HOME
-                    | str replace --all '$XDG_DATA_HOME' $env.XDG_DATA_HOME
-                    | str replace --all '$XDG_STATE_HOME' $env.XDG_STATE_HOME
-                }
+            | update value { env-string }
             | transpose --as-record --header-row
             | load-env)
     }
 
     # Add paths to `PATH`.
     def --env add-to-path [prepend: list, append: list] {
+        let prepend = ($prepend | each { env-string })
+        let append = ($append | each { env-string })
         $env.PATH = (($prepend ++ ($env.PATH | split row (char esep)) ++ $append) | path expand | uniq)
 
         # Add the same directories to the plugin search path.
