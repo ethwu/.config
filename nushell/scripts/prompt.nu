@@ -83,7 +83,7 @@ module prompt_segment {
             $"(ansi red)(open $rewrite_remaining | into int)/(open $rewrite_total | into int)"
         }
 
-        let branch_symbol = if $detached { "@" } else if $g.branch != no_branch { $"(ansi cyan) " } else { "" }
+        let branch_symbol = if $detached { "@" } else if $g.branch !~ 'no_branch|HEAD' { $"(ansi cyan) " } else { "" }
         ([
             $"(ansi reset)($branch_symbol)(ansi cyan)($g.branch)"
             (if $g.tag != no_tag and $g.branch != $g.branch { $"(ansi reset)#(ansi cyan)($g.tag)" })
