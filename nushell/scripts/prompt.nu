@@ -129,7 +129,7 @@ module prompt_segment {
         const tilde = (ansi light_green_bold) + "~"
         let path_color = ((ansi reset) + (if (is-admin) { ansi blue_italic } else { ansi green_italic }))
         let separator_color = ((ansi reset) + (if (is-admin) { ansi light_blue_italic } else { ansi light_green_italic }))
-        let home = (if (is-admin) { (ansi light_blue_bold) + "/root" } else { $tilde })
+        let home = (if (is-admin) { (ansi light_blue_bold) + $nu.home-path } else { $tilde })
         match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
             null => ($env.PWD | colorize_working_directory $separator_color $path_color)
             '' => $home
