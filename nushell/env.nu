@@ -7,6 +7,7 @@ source ./setup/profile.nu
 
 # Make scripts available for sourcing.
 $env.NU_LIB_DIRS = [
+    ($nu.default-config-dir | path join theme)
     ($nu.default-config-dir | path join scripts)
     ($nu.default-config-dir | path join nu_scripts)
 ]

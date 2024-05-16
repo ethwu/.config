@@ -1,3 +1,6 @@
+
+use theme catalina
+
 # Get the welcome message.
 export def main [] {
     let user = $env.USER
@@ -8,6 +11,7 @@ export def main [] {
         (ansi red_italic) $"\(($host.kernel_version)\)\n" (ansi reset)
         $"Logged in as (ansi green_italic)($user)(ansi reset) on (ansi green_italic)($hostname)(ansi reset)."
         (char newline)
-        $"Uptime: " (ansi blue_italic) $host.uptime (ansi reset)
+        "Uptime: " (ansi i) (ansi (catalina time-elapsed)) $host.uptime (ansi reset)
     ] | str join)
 }
+
