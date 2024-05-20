@@ -215,7 +215,7 @@ DOOR            07      # solaris door      reversed
 *.exe 32;04
 *.reg 32;04
 
-# ignores: dimmed
+# ignored: dimmed
 *~ 02
 *.bak 02
 *.BAK 02
@@ -328,68 +328,102 @@ DOOR            07      # solaris door      reversed
 *.xls 33
 *.xlsx 33
 
-# source files: blue
-*.c 34
-*.C 34
-*.cc 34
-*.csh 34
-*.css 34
-*.cxx 34
-*.el 34
-*.h 34
-*.hs 34
-*.htm 34
-*.html 34
-*.java 34
-*.l 34
-*.man 34
-*.mkd 34
-*.n 34
-*.objc 34
-*.org 34
-*.p 34
-*.php 34
-*.pl 34
-*.pm 34
-*.pod 34
-*.py 34
-*.rb 34
-*.rdf 34
-*.rtf 34
-*.sh 34
-*.shtml 34
-*.tex 34
-*.vim 34
-*.yml 34
-*.zsh 34
+# source files: red
+*.c 31
+*.C 31
+*.cc 31
+*.css 31
+*.cxx 31
+*.el 31
+*.go 31
+*.h 31
+*.hs 31
+*.htm 31
+*.html 31
+*.java 31
+*.l 31
+*.man 31
+*.mkd 31
+*.n 31
+*.objc 31
+*.p 31
+*.php 31
+*.pl 31
+*.pm 31
+*.pod 31
+*.rb 31
+*.rdf 31
+*.rs 31
+*.shtml 31
+*.tex 31
+*.vim 31
+# module files: dimmed italic red
+*__init__.py 31;02;03
+*mod.rs 31;02;03
+# scripts: italic red
+*.csh 31;03
+*.py 31;03
+*.sh 31
+*.zsh 31
+
+# compiled: dim
+*.a 02
+*.o 02
+*.pyc 02
 
 # text and documentation: italic blue
 *.md 34;03
+*.org 34;03
 *.rst 34;03
+*.rtf 34;03
 *.txt 34;03
 
-# data and configuration: italic magenta
-*.json 35;03
+# data (text): magenta
+*.csv 35
+*.json 35
+*.tsv 35
+*.xml 35
+
+# configuration: italic magenta
+*.cfg 35;03
+*.conf 35;03
+*.config 35;03
 *.ini 35;03
 *.toml 35;03
-*.xml 35;03
 *.yaml 35;03
+*.yml 35;03
 
 # build scripts: bold underlined yellow
-*Cargo.toml 33;01;04
 *.just 33;01;04
 *justfile 33;01;04
 *Dockerfile 33;01;04
 *.mk 33;01;04
 *Makefile 33;01;04
-*package.json 33;01;04
-*pyproject.toml 33;01;04
-*requirements.txt 33;01;04
-*requirements-dev.txt 33;01;04
-*requirements-build.txt 33;01;04
-# build files: dimmed bold yellow
-*.lock 33;01;02
-*node_modules 33;01;02
+# build config: bold yellow
+*Cargo.toml 33;01;04
+*CMakeLists.txt 33;01
+*MANIFEST.in 33;01
+*package.json 33;01
+*pyproject.toml 33;01
+*requirements.txt 33;01
+*requirements-dev.txt 33;01
+*requirements-build.txt 33;01
+*setup.cfg 33;01
+*setup.py 33;01
+# per-machine build files: dimmed bold yellow
+*.git 33;01;02
+*venv 33;01;02
+*virtualenv 33;01;02
+# build files: dimmed yellow
+*.egg-info 33;02
+*.lock 33;02
+*node_modules 33;02
+*__pycache__ 33;02
+# ignore files: yellow
+*ignore 33
+*.gitignore 33
+# environment files: italic yellow
+*.env 33;02
 
 # project docs: bold italic yellow
 *CODEOWNERS 33;01;03
