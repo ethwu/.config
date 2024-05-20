@@ -341,10 +341,8 @@ DOOR            07      # solaris door      reversed
 *.htm 34
 *.html 34
 *.java 34
-*.json 34
 *.l 34
 *.man 34
-*.md 34
 *.mkd 34
 *.n 34
 *.objc 34
@@ -361,11 +359,22 @@ DOOR            07      # solaris door      reversed
 *.sh 34
 *.shtml 34
 *.tex 34
-*.txt 34
 *.vim 34
-*.xml 34
 *.yml 34
 *.zsh 34
+
+# text and documentation: italic blue
+*.md 34;03
+*.rst 34;03
+*.txt 34;03
+
+# data and configuration: italic magenta
+*.json 35;03
+*.ini 35;03
+*.toml 35;03
+*.xml 35;03
+*.yaml 35;03
+
 # build scripts: bold underlined yellow
 *Cargo.toml 33;01;04
 *.just 33;01;04
@@ -375,6 +384,17 @@ DOOR            07      # solaris door      reversed
 *Makefile 33;01;04
 *package.json 33;01;04
 *pyproject.toml 33;01;04
+*requirements.txt 33;01;04
+*requirements-dev.txt 33;01;04
+*requirements-build.txt 33;01;04
 # build files: dimmed bold yellow
 *.lock 33;01;02
 *node_modules 33;01;02
+
+# project docs: bold italic yellow
+*CODEOWNERS 33;01;03
+*LICENSE 33;01;03
+*README 33;01;03
+*README.txt 33;01;03
+*README.md 33;01;03
+*README.rst 33;01;03
