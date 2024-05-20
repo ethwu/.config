@@ -1,0 +1,380 @@
+# When to add color to output:
+# - `all`: Colorize all output
+# - `tty`: Colorize output to TTY but not to pipes
+# - `none`: Do not colorize output
+COLOR tty
+
+# Colorizable termtypes
+TERM Eterm
+TERM ansi
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM dvtm
+TERM dvtm-256color
+TERM eterm-color
+TERM gnome
+TERM gnome-256color
+TERM hurd
+TERM jfbterm
+TERM konsole
+TERM konsole-256color
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mach-color
+TERM mach-gnu-color
+TERM mlterm
+TERM putty
+TERM putty-256color
+TERM rxvt
+TERM rxvt-256color
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM rxvt-unicode-256color
+TERM rxvt-unicode256
+TERM screen
+TERM screen-256color
+TERM screen-256color-bce
+TERM screen-bce
+TERM screen-w
+TERM screen.Eterm
+TERM screen.rxvt
+TERM screen.linux
+TERM st
+TERM st-256color
+TERM terminator
+TERM tmux*
+TERM tmux-256color
+TERM vt100
+TERM xterm
+TERM xterm-16color
+TERM xterm-256color
+TERM xterm-88color
+TERM xterm-color
+TERM xterm-debian
+
+# 00 Reset or normal
+# 01 Bold or increased intensity
+# 02 Faint, decreased intensity, or dim
+# 03 Italic
+# 04 Underline
+# 05 Slow blink
+# 06 Rapid blink*
+# 07 Reverse video or invert
+# 08 Conceal or hide
+# 09 Crossed-out, or strike
+# 10 Primary (default) font
+# 11-19 Alternative font
+# 20 Fraktur (Gothic)
+# 21 Doubly underlined, or: not bold
+# 22 Normal intensity
+# 23 Neither italic nor blackletter
+# 24 Not underlined
+# 25 Not blinking
+# 26 Proportional spacing
+# 27 Not reversed
+# 28 Reveal
+# 29 Not crossed out
+
+# 3  fg
+# 4  bg
+#  0 black
+#  1 red
+#  2 green
+#  3 yellow
+#  4 blue
+#  5 magenta
+#  6 cyan
+#  7 white
+
+# 38 Set foreground color
+# 39 Default foreground color
+# 48 Set background color
+# 49 Default background color
+
+# 58 Set underline color
+# 59 Default underline color
+
+## `ls` defaults ##
+
+# NORMAL   0       Normal (nonfilename) text
+# FILE     0       Regular file
+# DIR      32      Directory
+# LINK     36      Symbolic link
+# ORPHAN   undefined       Orphaned symbolic link
+# MISSING  undefined       Missing file
+# FIFO     31      Named pipe (FIFO)
+# SOCK     33      Socket
+# BLK      44;37   Block device
+# CHR      44;37   Character device
+# EXEC     35      Executable file
+
+RESET           00  # reset to normal
+NORMAL          00  # normal text
+# files
+FILE                    00          # regular file          normal
+DIR                     34;01       # directory             bold blue
+OTHER_WRITABLE          35;01       # ...other-writable     bold magenta
+STICKY                  34;01;04    # ...sticky             bold underlined blue
+STICKY_OTHER_WRITABLE   35;01;04    # ...sticky & other-wr. bold underlined magenta
+EXEC                    32;01       # executable            bold green
+SETGID                  31;01;03    # ...w/ setgid          bold italic red
+SETUID                  31;01;04;03 # ...w/ setuid          bold underlined italic red
+CAPABILITY              32;01;04    # ...w/ capability      bold underlined green
+
+# links
+LINK            36;03   # symlink           italic cyan
+MULTIHARDLINK   36      # hardlink          cyan
+ORPHAN          36;07   # orphaned symlink  reversed cyan
+MISSING         31;04   # ...missing file   underlined red
+# devices
+FIFO            32;07   # pipe              reversed green
+SOCK            33;07   # socket            reversed yellow
+BLOCK           34;07   # block device      reversed blue
+CHAR            35;07   # character device  reversed magenta
+DOOR            07      # solaris door      reversed
+
+## Extensions ##
+
+# archive: underlined blue
+*.tar   34
+# compressed: underlined magenta
+*.7z 35;01
+*.ace 35;01
+*.alz 35;01
+*.arc 35;01
+*.arj 35;01
+*.bz 35;01
+*.bz2 35;01
+*.cab 35;01
+*.cbio 35;01
+*.dz 35;01
+*.ear 35;01
+*.gz 35;01
+*.jar 35;01
+*.lha 35;01
+*.lrz 35;01
+*.lz 35;01
+*.lz4 35;01
+*.lzh 35;01
+*.lzma 35;01
+*.rar 35;01
+*.war 35;01
+*.xz 35;01
+*.z 35;01
+*.Z 35;01
+*.zip 35;01
+*.zoo 35;01
+*.zst 35;01
+# tarball: underlined bold magenta
+*.tar.7z 35;01;04
+*.tar.bz 35;01;04
+*.tar.bz2 35;01;04
+*.tar.gz 35;01;04
+*.tar.lz 35;01;04
+*.tar.lz4 35;01;04
+*.tar.lzh 35;01;04
+*.tar.lzma 35;01;04
+*.tar.rar 35;01;04
+*.tar.xz 35;01;04
+*.tar.z 35;01;04
+*.tar.zo 35;01;04
+*.tar.zst 35;01;04
+*.taz 35;01;04
+*.tbz 35;01;04
+*.tbz2 35;01;04
+*.tgz 35;01;04
+*.tlz 35;01;04
+*.txz 35;01;04
+*.tz 35;01;04
+*.tzo 35;01;04
+*.tzst 35;01;04
+# distribution format: underlined italic green
+*.deb 32;03;04
+*.rpm 32;03;04
+# executable file: underlined green
+*.app 32;04
+*.bat 32;04
+*.btm 32;04
+*.cmd 32;04
+*.com 32;04
+*.exe 32;04
+*.reg 32;04
+
+# ignores: dimmed
+*~ 02
+*.bak 02
+*.BAK 02
+*.diff 02
+*.log 02
+*.LOG 02
+*.old 02
+*.OLD 02
+*.orig 02
+*.ORIG 02
+*.swo 02
+*.swp 02
+
+# media
+
+# audio: italic yellow
+*.aac 33;03
+*.au 33;03
+*.axa 33;03
+*.flac 33;03
+*.m4a 33;03
+*.mid 33;03
+*.midi 33;03
+*.mka 33;03
+*.mp3 33;03
+*.mpc 33;03
+*.oga 33;03
+*.ogg 33;03
+*.ra 33;03
+*.spx 33;03
+*.xpsf 33;03
+*.wav 33;03
+# video: italic underlined yellow
+*.anx 33;03;04
+*.asf 33;03;04
+*.avi 33;03;04
+*.axv 33;03;04
+*.flc 33;03;04
+*.fli 33;03;04
+*.flv 33;03;04
+*.gl 33;03;04
+*.m2v 33;03;04
+*.m4v 33;03;04
+*.mkv 33;03;04
+*.mov 33;03;04
+*.MOV 33;03;04
+*.mp4 33;03;04
+*.mp4v 33;03;04
+*.mpeg 33;03;04
+*.mpg 33;03;04
+*.nuv 33;03;04
+*.ogm 33;03;04
+*.ogv 33;03;04
+*.ogx 33;03;04
+*.qt  33;03;04
+*.rm  33;03;04
+*.rmvb 33;03;04
+*.swf 33;03;04
+*.vob 33;03;04
+*.webm 33;03;04
+*.wmv 33;03;04
+# images: underlined yellow
+*.ai 33;04
+*.bmp 33;04
+*.cgm 33;04
+*.dl 33;04
+*.dvi 33;04
+*.emf 33;04
+*.eps 33;04
+*.gif 33;04
+*.jpeg 33;04
+*.jpg 33;04
+*.JPG 33;04
+*.mng 33;04
+*.pbm 33;04
+*.pcx 33;04
+*.pgm 33;04
+*.png 33;04
+*.PNG 33;04
+*.ppm 33;04
+*.pps 33;04
+*.ppsx 33;04
+*.ps 33;04
+*.psd 33;04
+*.svg 33;04
+*.svgz 33;04
+*.tga 33;04
+*.tif 33;04
+*.tiff 33;04
+*.xbm 33;04
+*.xcf 33;04
+*.xpm 33;04
+*.xwd 33;04
+*.yuv 33;04
+# documents: yellow
+*.doc 33
+*.docx 33
+*.dot 33
+*.odg 33
+*.odp 33
+*.ods 33
+*.odt 33
+*.otg 33
+*.otp 33
+*.ots 33
+*.ott 33
+*.pdf 33
+*.ppt 33
+*.pptx 33
+*.xls 33
+*.xlsx 33
+
+# source files: blue
+*.c 34
+*.C 34
+*.cc 34
+*.csh 34
+*.css 34
+*.cxx 34
+*.el 34
+*.h 34
+*.hs 34
+*.htm 34
+*.html 34
+*.java 34
+*.json 34
+*.l 34
+*.man 34
+*.md 34
+*.mkd 34
+*.n 34
+*.objc 34
+*.org 34
+*.p 34
+*.php 34
+*.pl 34
+*.pm 34
+*.pod 34
+*.py 34
+*.rb 34
+*.rdf 34
+*.rtf 34
+*.sh 34
+*.shtml 34
+*.tex 34
+*.txt 34
+*.vim 34
+*.xml 34
+*.yml 34
+*.zsh 34
+# build scripts: bold underlined yellow
+*Cargo.toml 33;01;04
+*.just 33;01;04
+*justfile 33;01;04
+*Dockerfile 33;01;04
+*.mk 33;01;04
+*Makefile 33;01;04
+*package.json 33;01;04
+*pyproject.toml 33;01;04
+# build files: dimmed bold yellow
+*.lock 33;01;02
+*node_modules 33;01;02
