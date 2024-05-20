@@ -88,8 +88,8 @@ module prompt_segment {
             $"(ansi reset)($branch_symbol)(ansi cyan)($g.branch)"
             (if $g.tag != no_tag and $g.branch != $g.branch { $"(ansi reset)#(ansi cyan)($g.tag)" })
             ([
-                (if $g.behind > 0 { $"(ansi cyan)⇣($g.behind)" })
-                (if $g.ahead > 0 { $"(ansi cyan)⇡($g.ahead)" })
+                (if $g.behind > 0 { $"(ansi light_red_bold)⇣($g.behind)" })
+                (if $g.ahead > 0 { $"(ansi light_green_bold)⇡($g.ahead)" })
             ] | str join)
             (if $g.stashes > 0 { $"(ansi cyan_bold)*($g.stashes)" })
             (if $rewrite_type != null { [
