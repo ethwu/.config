@@ -91,29 +91,29 @@ module prompt_segment {
                 (if $g.behind > 0 { $"(ansi cyan)⇣($g.behind)" })
                 (if $g.ahead > 0 { $"(ansi cyan)⇡($g.ahead)" })
             ] | str join)
-            (if $g.stashes > 0 { $"(ansi cyan)*($g.stashes)" })
+            (if $g.stashes > 0 { $"(ansi cyan_bold)*($g.stashes)" })
             (if $rewrite_type != null { [
                 $"(ansi red_bold)($rewrite_type)"
                 $"(rewrite_remaining)(ansi reset)"
                 (if $g.conflicts > 0 { $"≠($g.conflicts)(ansi reset)" })
             ] | filter { is-not-empty } | str join " " })
             (if $staged > 0 {
-                $"(ansi reset)(ansi blue_bold)!($staged) (ansi reset)([
+                $"(ansi reset)(ansi blue_bold)!($staged)(ansi light_blue_dimmed)\((ansi reset)([
                     (if $g.idx_added_staged > 0 { $"(ansi green)^($g.idx_added_staged)" })
                     (if $g.idx_modified_staged > 0 { $"(ansi yellow)+($g.idx_modified_staged)" })
                     (if $g.idx_deleted_staged > 0 { $"(ansi red)-($g.idx_deleted_staged)" })
                     (if $g.idx_renamed > 0 { $"(ansi blue)~($g.idx_renamed)" })
                     (if $g.idx_type_changed > 0 { $"(ansi purple)÷($g.idx_type_changed)" })
-                ] | filter { is-not-empty } | str join $"(ansi reset)/")"
+                ] | filter { is-not-empty } | str join $"(ansi reset)/")(ansi light_blue_dimmed)\)"
             })
             (if $unstaged > 0 {
-                $"(ansi reset)(ansi magenta_bold)?($unstaged) (ansi reset)([
-                    (if $g.wt_untracked > 0 { $"(ansi green_dimmed)^($g.wt_untracked)" })
-                    (if $g.wt_modified > 0 { $"(ansi yellow_dimmed)+($g.wt_modified)" })
-                    (if $g.wt_deleted > 0 { $"(ansi red_dimmed)-($g.wt_deleted)" })
-                    (if $g.wt_renamed > 0 { $"(ansi blue_dimmed)~($g.wt_renamed)" })
-                    (if $g.wt_type_changed > 0 { $"(ansi purple_dimmed)÷($g.wt_type_changed)" })
-                ] | filter { is-not-empty } | str join $"(ansi reset)/")"
+                $"(ansi reset)(ansi magenta_bold)?($unstaged)(ansi light_magenta_dimmed)\((ansi reset)([
+                    (if $g.wt_untracked > 0 { $"(ansi green)^($g.wt_untracked)" })
+                    (if $g.wt_modified > 0 { $"(ansi yellow)+($g.wt_modified)" })
+                    (if $g.wt_deleted > 0 { $"(ansi red)-($g.wt_deleted)" })
+                    (if $g.wt_renamed > 0 { $"(ansi blue)~($g.wt_renamed)" })
+                    (if $g.wt_type_changed > 0 { $"(ansi purple)÷($g.wt_type_changed)" })
+                ] | filter { is-not-empty } | str join $"(ansi reset)/")(ansi light_magenta_dimmed)\)"
             })
         ] | filter { is-not-empty } | str join " ")
     }
