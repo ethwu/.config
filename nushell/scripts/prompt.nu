@@ -94,7 +94,7 @@ module prompt_segment {
             (if $g.stashes > 0 { $"(ansi cyan_bold)*($g.stashes)" })
             (if $rewrite_type != null { [
                 $"(ansi red_bold)($rewrite_type)"
-                $"(rewrite_remaining)(ansi reset)"
+                (if $rewrite_remaining != null { $"($rewrite_remaining)(ansi reset)" })
                 (if $g.conflicts > 0 { $"≠($g.conflicts)(ansi reset)" })
             ] | filter { is-not-empty } | str join " " })
             (if $staged > 0 {
