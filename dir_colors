@@ -215,10 +215,11 @@ DOOR            07      # solaris door      reversed
 *.exe 32;04
 *.reg 32;04
 
-# ignored: dimmed
+# ignorable files: dimmed
 *~ 02
 *.bak 02
 *.BAK 02
+*.DS_Store 02
 *.diff 02
 *.log 02
 *.LOG 02
@@ -361,10 +362,12 @@ DOOR            07      # solaris door      reversed
 *__init__.py 31;02;03
 *mod.rs 31;02;03
 # scripts: italic red
+*.bash 31;03
 *.csh 31;03
 *.py 31;03
-*.sh 31
-*.zsh 31
+*.nu 31;03
+*.sh 31;03
+*.zsh 31;03
 
 # compiled: dim
 *.a 02
@@ -394,11 +397,13 @@ DOOR            07      # solaris door      reversed
 *.yml 35;03
 
 # build scripts: bold underlined yellow
+*configure 33;01;04
+*Dockerfile 33;01;04
+*install 33;01;04
 *.just 33;01;04
 *justfile 33;01;04
-*Dockerfile 33;01;04
-*.mk 33;01;04
 *Makefile 33;01;04
+*.mk 33;01;04
 # build config: bold yellow
 *Cargo.toml 33;01;04
 *CMakeLists.txt 33;01
@@ -424,6 +429,7 @@ DOOR            07      # solaris door      reversed
 *.gitignore 33
 # environment files: italic yellow
 *.env 33;02
+*.envrc 33;02
 
 # project docs: bold italic yellow
 *CODEOWNERS 33;01;03
@@ -432,3 +438,13 @@ DOOR            07      # solaris door      reversed
 *README.txt 33;01;03
 *README.md 33;01;03
 *README.rst 33;01;03
+
+# global environment config: dimmed italic red
+*bash_profile 31;02;03
+*bashrc 31;02;03
+*.profile 31;02;03
+*rc 31;02;03
+*zprofile 31;02;03
+*zshenv 31;02;03
+*zshrc 31;02;03
+
