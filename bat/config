@@ -1,0 +1,8 @@
+--theme=base16-catalina
+--italic-text=always
+--style=changes,header-filename,header-filesize,numbers,rule,snip
+--map-syntax '*.env{,rc}:Bourne Again Shell (bash)'
+--map-syntax '*.profile:Bourne Again Shell (bash)'
+--map-syntax 'profile:Bourne Again Shell (bash)'
+--map-syntax html.p:HTML
+--map-syntax poly.pm:Pollen
