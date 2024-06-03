@@ -49,7 +49,7 @@ module prompt_segment {
     export def userhost [] {
         ([
             (ansi reset) (ansi green_italic)
-            $env.USER
+            (whoami)
             (ansi reset) (ansi yellow)
             '@'
             (ansi reset) (ansi green_italic)
