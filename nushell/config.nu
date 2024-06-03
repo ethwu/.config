@@ -768,8 +768,6 @@ $env.config = {
 source ./setup/aliases.nu
 # Set up plugins.
 source ./setup/plugins/config.nu
-# # Set up completions.
-# source ./setup/plugins/completions.nu
 
 use ./scripts *
 

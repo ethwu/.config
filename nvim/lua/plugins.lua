@@ -1,3 +1,4 @@
+vim.opt.termguicolors = false
 vim.cmd.colorscheme('catalina')
 
 vim.g.mode_map = {

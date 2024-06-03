@@ -1,0 +1,236 @@
+" vimrc
+" -----
+
+" disable vi compat
+set nocompatible
+
+" VIM and NeoVim configuration.
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+if !has('nvim')
+    let g:netrw_home = $XDG_DATA_HOME . '/vim'
+    if isdirectory($XDG_DATA_HOME)
+        set viewdir=$XDG_DATA_HOME/vim/view
+    else
+        set viewdir=$HOME/.vim/view
+    endif
+    call mkdir(&viewdir, 'p')
+
+    if isdirectory($XDG_CACHE_HOME)
+        set backupdir=$XDG_CACHE_HOME/vim/backup
+        set directory=$XDG_CACHE_HOME/vim/swap
+        set undodir=$XDG_CACHE_HOME/vim/undo
+        set viminfofile=$XDG_CACHE_HOME/vim/viminfo
+    else
+        set backupdir=$HOME/.vim/backup
+        set directory=$HOME/.vim/swap
+        set undodir=$HOME/.vim/undo
+        set viminfofile=$HOME/.vim/viminfo
+    endif
+    call mkdir(&backupdir, 'p')
+    call mkdir(&directory, 'p')
+    call mkdir(&undodir, 'p')
+endif
+
+set enc=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+
+" disallow :autocmd, shell, and write commands in local rc
+set secure
+
+" indentation
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" show whitespace
+set list
+set listchars=tab:⇥\ ,multispace:·,trail:·,nbsp:␣,precedes:┄,extends:┄
+set fillchars=vert:╎,foldsep:╎,foldopen:•,foldclose:‣,eob:┊
+" show foldcolumn only if necessary
+if has('nvim') | set foldcolumn=auto | endif
+" folding determined by the syntax highlighting
+set foldmethod=syntax
+" do not fold by default
+set nofoldenable
+
+" Italic escape codes.
+set t_ZH=[3m
+set t_ZR=[23m
+
+" gutter
+set colorcolumn=81,101
+" line numbers
+set number
+" highlight cursor line
+set cursorline
+set cursorlineopt=number
+" display as much of a line that doesn't fit on the window as possible
+set display+=lastline
+if has('nvim') | set display+=msgsep | endif
+
+" highlighting
+syntax enable
+" highlight braces
+set showmatch
+" set comments=sl:/*,mb:\ *,elx:\ */
+
+" detect filetype
+filetype plugin indent on
+" load file changes
+set autoread
+" how long to wait to update after finishing typing
+set updatetime=2400
+
+" mostly case-insensitive search
+set smartcase
+set ignorecase
+
+" Disable F1.
+inoremap <F1> <nop>
+nnoremap <F1> <nop>
+" use space as the leader
+let mapleader=' '
+noremap <Leader> <nop>
+" use backslash as the local leader
+let localleader='\'
+
+" " tab to esc
+" noremap <Tab> <Esc>
+" vnoremap <Tab> <Esc>gV
+" onoremap <Tab> <Esc>
+" inoremap <Tab> <Esc>`^
+" inoremap <S-Tab> <Tab>
+
+" " use backslash to select in popup menus
+" inoremap <silent><expr> \ pumvisible() ? "\<C-n>" : '\'
+" inoremap <silent><expr> \| pumvisible() ? "\<C-p>" : "\|"
+
+" " enter to confirm in popup menus
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" ; to :
+noremap ; :
+noremap <Leader>; ;
+
+noremap <Leader>e :Explore<CR>
+
+" Copy to system clipboard.
+vnoremap <Leader>y "+y
+nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+yg_
+" Paste to system clipboard.
+vnoremap <Leader>p "+p
+nnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
+nnoremap <Leader>P "+P
+
+augroup Autocommands
+    " `mkdir` path to file before writing.
+    autocmd BufWritePre * call mkdir(expand('%:p:h'), 'p')
+augroup END
+
+" use F7 to enter paste mode
+set pastetoggle=<F7>
+
+" always show at least one line above/below cursor
+set scrolloff=1
+" mouse compat
+set mouse=
+" set mouse=a
+" fancy cursor
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,
+            \a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,
+            \sm:block-blinkwait175-blinkoff150-blinkon175
+
+" completion menu
+set wildmenu
+" show the statusline
+set laststatus=2
+" hide the mode
+set noshowmode
+
+" statusline {{{
+
+" mode strings
+let g:mode_map = {
+    \ 'n': 'normal',
+    \ 'no': 'operator pending',
+    \ 'v': 'visual',
+    \ 'V': 'v-line',
+    \ '': 'v-block',
+    \ 's': 'select',
+    \ 'S': 's-line',
+    \ '': 's-block',
+    \ 'i': 'insert',
+    \ 'R': 'replace',
+    \ 'Rv': 'v-replace',
+    \ 'c': 'command',
+    \ 'cv': 'vim ex',
+    \ 'ce': 'ex',
+    \ 'rm': 'more',
+    \ 'r?': 'confirm',
+    \ '!': 'shell',
+    \ 't': 'terminal',
+    \ }
+
+function! FileSize() abort
+    let l:bytes = wordcount()['bytes']
+    let l:prefixes = ['B', 'KiB', 'MiB', 'GiB']
+    for l:prefix in l:prefixes
+        if l:bytes < 1024
+            if l:prefix ==# 'B' | return printf('%d B', l:bytes) | endif
+            return printf('%.1f %s', l:bytes, l:prefix)
+        endif
+        let l:bytes = l:bytes / 1024.0
+    endfor
+endfunction
+
+set statusline=
+set statusline+=%#StatusLine#
+set statusline+=\ %f\ 
+set statusline+=%#Search#
+set statusline+=\ %{g:mode_map[mode()]}\ 
+set statusline+=%#Normal#
+set statusline+=%(\ %r%)%(\ %h%)%(\ %w%)%(\ %m%)%=
+set statusline+=\ %y\ [%{FileSize()}]\ 
+set statusline+=%#Search#
+set statusline+=\ %3p%%\ 
+set statusline+=%#StatusLine#
+set statusline+=\ %3l:%-2v\ 
+
+" }}}
+
+" netrw {{{
+let g:netrw_keepdir = 0
+let g:netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
+" }}}
+
+if filereadable($XDG_CONFIG_HOME . '/vim/plugins.vim')
+    source $XDG_CONFIG_HOME/vim/plugins.vim
+elseif filereadable($HOME . '/.vim/plugins.vim')
+    source $HOME/.vim/plugins.vim
+endif
+
+if has('nvim') && filereadable($XDG_CONFIG_HOME . '/nvim/init.vim')
+    source $XDG_CONFIG_HOME/nvim/init.vim
+endif
+
+
+" user commands {{{
+    " Call `just`.
+    noremap <expr> <Leader>j ":!just "
+    " Call `make`.
+    noremap <expr> <Leader>m ":make "
+
+    " Suspend the process.
+    noremap <Leader><Leader> 
+" }}}

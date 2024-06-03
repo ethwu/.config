@@ -91,8 +91,8 @@ vim.api.nvim_set_keymap('v', '<Leader>p', '"+p', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>P', '"+P', { noremap = true })
 vim.api.nvim_set_keymap('v', '<Leader>P', '"+P', { noremap = true })
 
--- use F7 to enter paste mode
-vim.opt.pastetoggle = '<F7>'
+-- -- use F7 to enter paste mode
+-- vim.opt.pastetoggle = '<F7>'
 
 -- always show at least one line above/below cursor
 vim.opt.scrolloff = 1

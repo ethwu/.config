@@ -1,0 +1,27 @@
+include /usr/share/nano/*.nanorc
+
+# Ctrl+Right stops at word ends.
+set afterends
+# Soft wrap at blank characters (tabs and spaces).
+set atblanks
+# Autoindent.
+set autoindent
+# Create backups of edited files.
+set backup
+# Store backups in `~/.cache`
+set backupdir "~/.cache/nano"
+# Always show current cursor position.
+set constantshow
+# Draw column at line 80.
+set guidestripe 81
+# Don't show line numbers.
+unset linenumbers
+# Home goes to first non-whitespace character first.
+set smarthome
+# Enable soft wrapping.
+set softwrap
+# Use two-space tabs.
+set tabsize 2
+# Expand tabs.
+set tabstospaces
+
