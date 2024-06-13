@@ -1,5 +1,6 @@
 #! /bin/sh
 source_if_exists() { [ -f "$1" ] && . "$@" ; }
+source_if_exists "$HOME/.profile.env"
 
 # Set up the XDG Base Directories.
 export XDG_BIN_HOME="${XDG_BIN_HOME:="$HOME"/.local/bin}"
