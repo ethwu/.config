@@ -3,7 +3,7 @@ use theme catalina
 
 # Get the welcome message.
 export def main [] {
-    let user = $env.USER
+    let user = whoami
     let host = sys host
     let hostname = $host.hostname
     ([
