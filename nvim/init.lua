@@ -122,7 +122,7 @@ vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 
 -- user commands
 vim.cmd([[noremap <expr> <Leader>n ":set list! number! signcolumn=" .. (&signcolumn == "yes" ? "no" : "yes") .. "\n"]])
-vim.keymap.set({'n', 'i'}, '<Leader>h', vim.diagnostic.open_float)
-vim.keymap.set({'n', 'i'}, '<Leader>H', vim.lsp.buf.code_action)
+vim.keymap.set({'n'}, '<Leader>h', vim.diagnostic.open_float)
+vim.keymap.set({'n'}, '<Leader>H', vim.lsp.buf.code_action)
 
 vim.cmd('source $HOME/.config/nvim/prompt.vim')
