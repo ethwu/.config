@@ -95,3 +95,4 @@ if [ -n "$BASH_VERSION" ] ; then
     [ -f "$XDG_CONFIG_HOME"/bash/bashrc ] && . "$XDG_CONFIG_HOME"/bash/bashrc
 fi
 
+source_if_exists "$HOME"/.local.profile
