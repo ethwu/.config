@@ -14,7 +14,27 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.localleader = '\\'
 
-require("lazy").setup("plugins", {})
+require("lazy").setup("plugins", {
+	ui = {
+		icons = {
+			cmd = '⌘',
+			config = '🛠',
+			event = '📅',
+			ft = '🗀',
+			keys = '🎹',
+			lazy = '󰒲 ',
+			loaded = '●',
+			not_loaded = '○',
+			plugin = '🧩',
+			runtime = '☕️',
+			require = '󰢱 ',
+			source = '📄',
+			start = '🏁',
+			task = '✔',
+			list = { '●', '➜', '★', '‒' },
+		},
+	},
+})
 
 -- disallow :autocmd, shell, and write commands in local rc
 vim.opt.secure = true
