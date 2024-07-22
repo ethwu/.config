@@ -19,10 +19,10 @@ let g:mode_map = {
     \ 't': 'terminal',
     \ }
 
+let s:prefixes = ['B', 'KiB', 'MiB', 'GiB', 'TiB']
 function! FileSize() abort
-    let l:bytes = wordcount()['bytes']
-    let l:prefixes = ['B', 'KiB', 'MiB', 'GiB']
-    for l:prefix in l:prefixes
+    let l:bytes = getfsize(expand(@%))
+    for l:prefix in s:prefixes
         if l:bytes < 1024
             if l:prefix ==# 'B' | return printf('%d B', l:bytes) | endif
             return printf('%.1f %s', l:bytes, l:prefix)
