@@ -1,5 +1,5 @@
-vim.opt.termguicolors = false
-vim.cmd.colorscheme('catalina')
+ vim.opt.termguicolors = false
+-- vim.cmd.colorscheme('catalina')
 
 vim.g.mode_map = {
 	n = 'normal',
@@ -21,6 +21,5 @@ vim.g.mode_map = {
 	['!'] = 'shell',
 	t = 'terminal',
 }
-
 
 return {}

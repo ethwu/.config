@@ -33,9 +33,9 @@ endfunction
 
 set statusline=
 set statusline+=%#StatusLine#
-set statusline+=\ %f\ 
-set statusline+=%#Search#
 set statusline+=\ %{g:mode_map[mode()]}\ 
+set statusline+=%#Search#
+set statusline+=\ %f\ 
 set statusline+=%#Normal#
 set statusline+=%(\ %r%)%(\ %h%)%(\ %w%)%(\ %m%)%=
 set statusline+=\ %y\ [%{FileSize()}]\ 

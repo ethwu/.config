@@ -1,10 +1,12 @@
-vim.cmd('source $HOME/.config/nvim/lua/plugins/lightline.vim')
+-- vim.cmd('source $HOME/.config/nvim/lua/plugins/lightline.vim')
 return {
 	'itchyny/lightline.vim',
+	enabled = false,
 	lazy = false,
 	config = function()
 		vim.g.lightline = {
 			colorscheme = 'catalina',
+			-- colorscheme = 'tokyonight',
 			mode_map = vim.g.mode_map,
 			active = {
 				left = {
