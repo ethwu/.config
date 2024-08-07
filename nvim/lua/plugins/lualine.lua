@@ -94,7 +94,9 @@ local diff = { 'diff', diff_color = {
 	modified = { fg = colors.orange + bright, gui = 'bold' },
 	removed = { fg = colors.red + bright, gui = 'bold' },
 } }
-local filename = { 'filename', newfile_status = true, separator = '' }
+local filename = { 'filename', newfile_status = true, separator = '', symbols = {
+	modified = '[+]', readonly = '[-]', unnamed = '[No Name]', newfile = '[New]',
+} }
 local filesize = {
 	'filesize',
 	fmt = function(s)
@@ -111,6 +113,9 @@ local filesize = {
 	padding = { left = 0, right = 1 },
 	color = { gui = 'None' },
 }
+local lineno = { function() return vim.fn.line'.' end, icons_enabled = true, icon = '', separator = '', padding = { left = 1, right = 0 } }
+local colno = { function() return vim.fn.charcol'.' end, icons_enabled = true, icon = '' }
+-- local readonly = { "''", cond = function() return vim.bo[vim.api.nvim_win_get_buf(0)].readonly end }
 
 return {
 	'nvim-lualine/lualine.nvim',
@@ -122,9 +127,11 @@ return {
 			theme = theme,
 			section_separators = { left = '', right = '' },
 			component_separators = { left = '│', right = '│' },
+			-- section_separators = { left = '', right = ''},
+			-- component_separators = { left = '', right = ''},
 		},
 		sections = {
-			lualine_a = { mode, },
+			lualine_a = { mode },
 			lualine_b = { branch },
 			lualine_c = {
 				filename,
@@ -139,7 +146,9 @@ return {
 			},
 			lualine_y = { { 'progress', fmt = trunc(60, 60, 60, false) } },
 			lualine_z = {
-				{ 'location', icons_enabled = true, icon = '' },
+				-- { location, icons_enabled = true, icon = '' },
+				lineno,
+				colno,
 				{
 					window,
 					color = { bg = colors.magenta },
@@ -154,7 +163,7 @@ return {
 			lualine_x = {},
 			lualine_y = { },
 			lualine_z = {
-				{ 'location', icons_enabled = true, icon = '' },
+				lineno, colno,
 				{ window, color = { bg = colors.magenta } },
 			},
 		},
