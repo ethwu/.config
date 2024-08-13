@@ -52,6 +52,7 @@ vim.opt.list = true
 vim.opt.listchars = {
 	-- spaces
 	multispace = '·',
+	lead = ' ',
 	trail = '·',
 	nbsp = '␣',
 	-- tabs

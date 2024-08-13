@@ -121,6 +121,28 @@ local lineno = { function() return vim.fn.line'.' end, icons_enabled = true, ico
 local colno = { function() return vim.fn.charcol'.' end, icons_enabled = true, icon = '' }
 -- local readonly = { "''", cond = function() return vim.bo[vim.api.nvim_win_get_buf(0)].readonly end }
 local windowno = { "vim.api.nvim_win_get_number(0)", color = { bg = colors.magenta }, cond = function() return #vim.api.nvim_list_wins() > 1 end }
+-- this can probably be genericized to an arbitrary width, but I just
+-- really don't want to deal with that rn
+local progress_indicators = {
+	-- '⠁⠀', '⠃⠀', '⠇⠀', '⡇⠀', '⡏⠀', '⡟⠀', '⡿⠀', '⣿⠀',
+	-- '⣿⠁', '⣿⠃', '⣿⠇', '⣿⡇', '⣿⡏', '⣿⡟', '⣿⡿',
+	'▏   ', '▎   ', '▍   ', '▌   ', '▋   ', '▊   ', '▉   ', '█   ',
+	'█▏  ', '█▎  ', '█▍  ', '█▌  ', '█▋  ', '█▊  ', '█▉  ', '██  ',
+	'██▏ ', '██▎ ', '██▍ ', '██▌ ', '██▋ ', '██▊ ', '██▉ ', '███ ',
+	'███▏', '███▎', '███▍', '███▌', '███▋', '███▊', '███▉',
+}
+-- local progress_width = 3
+local function progress()
+	local cur = vim.fn.line('.')
+	local total = vim.fn.line('$')
+	if cur == 1 then
+		return '    '
+	elseif cur == total then
+		return '████'
+	else
+		return progress_indicators[math.floor(cur * #progress_indicators / total) + 1]
+	end
+end
 
 return {
 	'nvim-lualine/lualine.nvim',
@@ -147,13 +169,13 @@ return {
 			lualine_x = {
 				{ 'encoding', fmt = trunc(100, 100, 100, false) },
 				{ 'fileformat', fmt = trunc(100, 100, 100, false) },
-				{ 'filetype', fmt = trunc(80, 80, 80, false)  },
+				{ 'filetype', fmt = trunc(80, 80, 80, false) },
 			},
-			lualine_y = { { 'progress', fmt = trunc(80, 80, 80, false) } },
+			lualine_y = { { progress, padding = 0, fmt = trunc(80, 80, 80, false) } },
 			lualine_z = {
-				-- { location, icons_enabled = true, icon = '' },
-				lineno,
-				colno,
+				{ 'location', icons_enabled = true, icon = '' },
+				-- lineno,
+				-- colno,
 				windowno,
 			},
 		},
@@ -162,9 +184,10 @@ return {
 			lualine_b = { },
 			lualine_c = { filename, filesize, diff, diagnostics },
 			lualine_x = {},
-			lualine_y = { },
+			lualine_y = { { progress, padding = 0, fmt = trunc(80, 80, 80, false) } },
 			lualine_z = {
-				lineno, colno,
+				{ 'location', icons_enabled = true, icon = '' },
+				-- lineno, colno,
 				windowno,
 			},
 		},
@@ -172,7 +195,9 @@ return {
 		winbar = {},
 		extensions = {
 			'fugitive',
+			'fzf',
 			'mason',
+			'trouble',
 		},
 	},
 }
