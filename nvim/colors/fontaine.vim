@@ -211,11 +211,11 @@ if &background == 'light'
   hi ModeMsg                ctermfg=DarkBlue
   hi MoreMsg                ctermfg=DarkBlue
   hi NonText                ctermfg=DarkGray
-  hi NormalFloat            ctermfg=Black       ctermbg=Blue
-  hi Pmenu                  ctermfg=Black       ctermbg=Blue
-  hi PmenuSel               ctermfg=Black       ctermbg=DarkBlue        cterm=bold blend=0
-  hi PmenuThumb                                 ctermbg=DarkYellow
-  hi Question               ctermfg=Black       ctermbg=Magenta cterm=italic
+  hi NormalFloat            ctermfg=NONE        ctermbg=NONE
+  hi Pmenu                  ctermfg=White       ctermbg=DarkBlue    cterm=NONE
+  hi PmenuSel               ctermfg=White       ctermbg=Blue        cterm=bold blend=0
+  hi PmenuThumb                                 ctermbg=Magenta
+  hi Question               ctermfg=Green                           cterm=bold,italic
   hi QuickFixLine           ctermfg=DarkCyan
   hi RedrawDebugClear       ctermfg=0 ctermbg=11
   hi RedrawDebugComposed    ctermfg=0 ctermbg=10
@@ -231,7 +231,7 @@ if &background == 'light'
   hi StatusLine           ctermfg=Black                             cterm=bold
   hi StatusLineNC         ctermfg=DarkGray                          cterm=bold
   hi Title                ctermfg=DarkYellow                        cterm=bold
-  hi Visual                                     ctermbg=DarkMagenta
+  hi Visual                                     ctermbg=Magenta
   hi WarningMsg           ctermfg=DarkYellow                        cterm=italic
   hi WinBar               ctermfg=Black                             cterm=bold
   hi WinBarNC             ctermfg=DarkGray                          cterm=bold
@@ -240,14 +240,14 @@ if &background == 'light'
   hi Constant   ctermfg=DarkBlue
   hi Operator   ctermfg=DarkGray
   hi PreProc    ctermfg=DarkRed     cterm=bold
-  hi Type       ctermfg=DarkGreen   cterm=italic
+  hi Type       ctermfg=DarkMagenta cterm=italic
   hi Delimiter  ctermfg=DarkGray
 
-  hi Comment    ctermfg=DarkGray        cterm=italic
-  hi String     ctermfg=DarkBlue
-  hi Identifier ctermfg=DarkBlue
-  hi Function   ctermfg=DarkMagenta     cterm=italic
-  hi Statement  ctermfg=DarkYellow      cterm=bold
+  hi Comment    ctermfg=DarkGreen        cterm=italic
+  hi String     ctermfg=DarkRed
+  hi Identifier ctermfg=DarkMagenta
+  hi Function   ctermfg=DarkBlue        cterm=italic
+  hi Statement  ctermfg=DarkBlue        cterm=bold
   hi Special    ctermfg=Black           cterm=bold
   hi Error      ctermfg=Black           ctermbg=Red
   hi Todo       ctermfg=Black           ctermbg=Yellow  cterm=bold
@@ -266,7 +266,7 @@ if &background == 'light'
   hi DiagnosticDeprecated     ctermfg=DarkRed       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=DarkMagenta  cterm=bold
+  hi @variable ctermfg=DarkYellow  cterm=bold
 else
   " UI
   hi Added                  ctermfg=Green
@@ -295,7 +295,7 @@ else
   hi Pmenu                  ctermfg=White       ctermbg=DarkBlue
   hi PmenuSel               ctermfg=White       ctermbg=Blue        cterm=bold blend=0
   hi PmenuThumb                                 ctermbg=Yellow
-  hi Question               ctermfg=White       ctermbg=DarkMagenta cterm=italic
+  hi Question               ctermfg=Green                           cterm=bold,italic
   hi QuickFixLine           ctermfg=Cyan
   hi RedrawDebugClear       ctermfg=0 ctermbg=11
   hi RedrawDebugComposed    ctermfg=0 ctermbg=10
