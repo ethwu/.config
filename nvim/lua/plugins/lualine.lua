@@ -101,6 +101,8 @@ local diagnostics = { 'diagnostics', diagnostics_color = {
 local filename = { 'filename', newfile_status = true, separator = '', symbols = {
 	modified = '[+]', readonly = '[-]', unnamed = '[No Name]', newfile = '[New]',
 } }
+local fullfilename = filename
+fullfilename['path'] = 3
 local filesize = {
 	'filesize',
 	fmt = function(s)
@@ -191,11 +193,18 @@ return {
 				windowno,
 			},
 		},
-		tabline = {},
+		tabline = {
+			lualine_a = {
+				{ 'buffers', mode = 2, symbols = { modified = '[+]', directory = '🮹🮺' } },
+			},
+			lualine_c = { fullfilename },
+			lualine_z = { 'tabs' },
+		},
 		winbar = {},
 		extensions = {
 			'fugitive',
 			'fzf',
+			'lazy',
 			'mason',
 			'trouble',
 		},

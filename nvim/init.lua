@@ -128,6 +128,8 @@ vim.opt.wildmenu = true
 vim.opt.laststatus = 2
 -- hide the mode
 vim.opt.showmode = false
+-- hide the tabline when there's only one tab
+vim.opt.showtabline = 1
 
 -- netrw
 vim.g.netrw_keepdir = 0
@@ -153,8 +155,10 @@ end)
 vim.keymap.set(nvi, '<F1>', vim.lsp.buf.hover)
 vim.keymap.set(nvi, '<F2>', vim.lsp.buf.rename)
 vim.keymap.set(nvi, '<F3>', vim.diagnostic.open_float)
-vim.keymap.set(nvi, '<F6>', vim.lsp.buf.code_action)
 vim.keymap.set(nvi, '<F4>', vim.lsp.buf.format)
+vim.keymap.set(nvi, '<F6>', vim.lsp.buf.code_action)
+-- F7 searches using rg.
+-- F8 opens fzf to search for files.
 vim.keymap.set(nvi, '<F11>', vim.lsp.buf.references)
 vim.keymap.set(nv, '<Leader><F11>', vim.lsp.buf.incoming_calls)
 vim.keymap.set(nvi, '<F12>', vim.lsp.buf.definition)
