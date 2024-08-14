@@ -15,7 +15,7 @@ vim.g.mapleader = ' '
 vim.g.localleader = '\\'
 
 require("lazy").setup("plugins", {
-	ui = {
+	i = {
 		icons = {
 			cmd = '⌘',
 			config = '🛠',
@@ -122,7 +122,7 @@ vim.opt.mouse = nil
 -- fancy cursor
 vim.opt.guicursor = {
 	['n-v-c'] = 'block',
-	['i-ci-ve'] = 'block',
+	['i-ci-ve'] = 'ver20',
 	['r-cr'] = 'hor20',
 	['o'] = 'hor50',
 	['a'] = 'blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
@@ -142,8 +142,30 @@ vim.g.netrw_keepdir = 0
 vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 
 -- user commands
-vim.cmd([[noremap <expr> <Leader>n ":set list! number! signcolumn=" .. (&signcolumn == "yes" ? "no" : "yes") .. "\n"]])
-vim.keymap.set({'n'}, '<Leader>h', vim.diagnostic.open_float)
-vim.keymap.set({'n'}, '<Leader>H', vim.lsp.buf.code_action)
+local nvi = { 'n', 'v', 's', 'i' }
+local nv = { 'n', 'v', 's' }
+
+-- vim.cmd([[noremap <expr> <Leader>n ":set list! number! signcolumn=" .. (&signcolumn == "yes" ? "no" : "yes") .. "\n"]])
+vim.keymap.set(nv, '<Leader>n', function()
+	vim.opt.list = not vim.opt.list:get()
+	vim.opt.number = not vim.opt.number:get()
+	vim.opt.signcolumn = (vim.opt.signcolumn:get() == 'no' and 'yes' or 'no')
+	-- if vim.opt.signcolumn == 'no' then
+	-- 	vim.opt.signcolumn = 'yes'
+	-- else
+	-- 	vim.opt.signcolumn = 'no'
+	-- end
+end)
+
+-- lsp commands
+vim.keymap.set(nvi, '<F1>', vim.lsp.buf.hover)
+vim.keymap.set(nvi, '<F2>', vim.lsp.buf.rename)
+vim.keymap.set(nvi, '<F3>', vim.diagnostic.open_float)
+vim.keymap.set(nvi, '<F6>', vim.lsp.buf.code_action)
+vim.keymap.set(nvi, '<F4>', vim.lsp.buf.format)
+vim.keymap.set(nvi, '<F11>', vim.lsp.buf.references)
+vim.keymap.set(nv, '<Leader><F11>', vim.lsp.buf.incoming_calls)
+vim.keymap.set(nvi, '<F12>', vim.lsp.buf.definition)
+vim.keymap.set(nv, '<Leader><F12>', vim.lsp.buf.implementation)
 
 vim.cmd('source $HOME/.config/nvim/prompt.vim')

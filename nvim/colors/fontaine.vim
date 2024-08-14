@@ -45,8 +45,8 @@ hi link WinSeparator     Normal
 
 " Syntax
 hi link Character      Constant
-" hi link Number         Constant
-" hi link Boolean        Constant
+hi link Number         Constant
+hi link Boolean        Constant
 hi link Float          Number
 hi link Conditional    Statement
 hi link Repeat         Statement
@@ -55,7 +55,7 @@ hi link Keyword        Statement
 hi link Exception      Statement
 hi link Include        PreProc
 hi link Define         PreProc
-" hi link Macro          PreProc
+hi link Macro          PreProc
 hi link PreCondit      PreProc
 hi link StorageClass   Type
 hi link Structure      Type
