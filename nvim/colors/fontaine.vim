@@ -191,7 +191,7 @@ if &background == 'light'
   " UI
   hi Added                  ctermfg=DarkGreen
   hi Changed                ctermfg=DarkCyan
-  hi ColorColumn                                ctermbg=Gray
+  hi ColorColumn                                ctermbg=Gray        cterm=NONE
   hi Conceal                ctermfg=Gray
   hi CurSearch              ctermfg=White       ctermbg=DarkYellow  cterm=bold
   hi CursorColumn                               ctermbg=Gray
@@ -230,7 +230,7 @@ if &background == 'light'
   hi SpellRare            guisp=Cyan   gui=undercurl                 cterm=undercurl
   hi StatusLine           ctermfg=Black                             cterm=bold
   hi StatusLineNC         ctermfg=DarkGray                          cterm=bold
-  hi Title                ctermfg=DarkYellow                        cterm=bold
+  hi Title                ctermfg=DarkMagenta                       cterm=bold
   hi Visual                                     ctermbg=Magenta
   hi WarningMsg           ctermfg=DarkYellow                        cterm=italic
   hi WinBar               ctermfg=Black                             cterm=bold
@@ -261,6 +261,7 @@ if &background == 'light'
   hi DiagnosticInfo           ctermfg=DarkBlue
   hi DiagnosticHint           ctermfg=DarkCyan
   hi DiagnosticOk             ctermfg=DarkGreen
+  hi DiagnosticUnnecessary    ctermfg=Gray          cterm=italic
   hi DiagnosticUnderlineError ctermfg=DarkRed       cterm=underline
   hi DiagnosticUnderlineWarn  ctermfg=DarkYellow    cterm=underline
   hi DiagnosticUnderlineInfo  ctermfg=DarkCyan      cterm=underline
@@ -270,7 +271,7 @@ if &background == 'light'
 
   " Treesitter standard groups
   hi @variable ctermfg=DarkGray
-else " &background == 'dark'
+elseif &background == 'dark'
   " UI
   hi Added                  ctermfg=Green
   hi Changed                ctermfg=Cyan
