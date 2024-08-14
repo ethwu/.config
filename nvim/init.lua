@@ -120,15 +120,7 @@ vim.opt.scrolloff = 1
 -- disable mouse compat
 vim.opt.mouse = nil
 -- fancy cursor
-vim.opt.guicursor = {
-	['n-v-c'] = 'block',
-	['i-ci-ve'] = 'ver20',
-	['r-cr'] = 'hor20',
-	['o'] = 'hor50',
-	['a'] = 'blinkwait700-blinkoff400-blinkon250-Cursor/lCursor',
-	['n-c'] = 'blinkon0',
-	['sm'] = 'block-blinkwait175-blinkoff150-blinkon175',
-}
+vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver20,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,n-c:blinkon0,sm:block-blinkwait175-blinkoff150-blinkon175'
 
 -- completion menu
 vim.opt.wildmenu = true
