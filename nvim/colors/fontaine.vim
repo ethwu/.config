@@ -45,8 +45,8 @@ hi link WinSeparator     Normal
 
 " Syntax
 hi link Character      Constant
-hi link Number         Constant
-hi link Boolean        Constant
+" hi link Number         Constant
+" hi link Boolean        Constant
 hi link Float          Number
 hi link Conditional    Statement
 hi link Repeat         Statement
@@ -55,7 +55,7 @@ hi link Keyword        Statement
 hi link Exception      Statement
 hi link Include        PreProc
 hi link Define         PreProc
-hi link Macro          PreProc
+" hi link Macro          PreProc
 hi link PreCondit      PreProc
 hi link StorageClass   Type
 hi link Structure      Type
@@ -195,7 +195,7 @@ if &background == 'light'
   hi Conceal                ctermfg=Gray
   hi CurSearch              ctermfg=White       ctermbg=DarkYellow  cterm=bold
   hi CursorColumn                               ctermbg=Gray
-  hi CursorLine                                 ctermbg=Gray
+  hi CursorLine                                 ctermbg=Gray        cterm=NONE
   hi CursorLineNr           ctermfg=Black                           cterm=bold
   hi DiffAdd                ctermfg=Black       ctermbg=Green
   hi DiffChange             ctermfg=Black       ctermbg=Cyan
@@ -238,8 +238,11 @@ if &background == 'light'
 
   " Syntax
   hi Constant   ctermfg=DarkBlue
+  hi Number     ctermfg=DarkMagenta
+  hi Boolean    ctermfg=DarkCyan    cterm=italic
   hi Operator   ctermfg=DarkGray
-  hi PreProc    ctermfg=DarkRed     cterm=bold
+  hi PreProc    ctermfg=DarkBlue    cterm=bold
+  hi Macro      ctermfg=DarkRed     cterm=bold
   hi Type       ctermfg=DarkMagenta cterm=italic
   hi Delimiter  ctermfg=DarkGray
 
@@ -266,8 +269,8 @@ if &background == 'light'
   hi DiagnosticDeprecated     ctermfg=DarkRed       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=Black
-else
+  hi @variable ctermfg=DarkGray
+else " &background == 'dark'
   " UI
   hi Added                  ctermfg=Green
   hi Changed                ctermfg=Cyan
@@ -275,7 +278,7 @@ else
   hi Conceal                ctermfg=DarkGray
   hi CurSearch              ctermfg=Black       ctermbg=Yellow      cterm=bold
   hi CursorColumn                               ctermbg=DarkGray
-  hi CursorLine                                 ctermbg=DarkGray
+  hi CursorLine                                 ctermbg=DarkGray    cterm=NONE
   hi CursorLineNr           ctermfg=White                           cterm=bold
   hi DiffAdd                ctermfg=White       ctermbg=DarkGreen
   hi DiffChange             ctermfg=White       ctermbg=DarkCyan
@@ -318,15 +321,18 @@ else
 
   " Syntax
   hi Constant   ctermfg=Blue
+  hi Number     ctermfg=Magenta
+  hi Boolean    ctermfg=Cyan    cterm=italic
   hi Operator   ctermfg=Gray
-  hi PreProc    ctermfg=Red     cterm=bold
-  hi Type       ctermfg=Green   cterm=italic
+  hi PreProc    ctermfg=Green   cterm=bold
+  hi Macro      ctermfg=DarkRed cterm=bold
+  hi Type       ctermfg=Green   cterm=bold,italic
   hi Delimiter  ctermfg=Gray
 
   hi Comment    ctermfg=Gray        cterm=italic
   hi String     ctermfg=Blue
   hi Identifier ctermfg=Blue
-  hi Function   ctermfg=Magenta     cterm=italic
+  hi Function   ctermfg=Green       cterm=italic
   hi Statement  ctermfg=Yellow      cterm=bold
   hi Special    ctermfg=White       cterm=bold
   hi Error      ctermfg=White       ctermbg=DarkRed
@@ -346,7 +352,7 @@ else
   hi DiagnosticDeprecated     ctermfg=Red       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=White
+  hi @variable ctermfg=Gray
 endif
 
 " NvimInternalError should appear only when highlighter has a bug.
