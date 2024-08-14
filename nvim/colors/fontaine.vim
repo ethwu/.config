@@ -255,8 +255,8 @@ if &background == 'light'
   " Diagnostic
   hi DiagnosticError          ctermfg=DarkRed
   hi DiagnosticWarn           ctermfg=DarkYellow
-  hi DiagnosticInfo           ctermfg=DarkCyan
-  hi DiagnosticHint           ctermfg=DarkBlue
+  hi DiagnosticInfo           ctermfg=DarkBlue
+  hi DiagnosticHint           ctermfg=DarkCyan
   hi DiagnosticOk             ctermfg=DarkGreen
   hi DiagnosticUnderlineError ctermfg=DarkRed       cterm=underline
   hi DiagnosticUnderlineWarn  ctermfg=DarkYellow    cterm=underline
@@ -266,7 +266,7 @@ if &background == 'light'
   hi DiagnosticDeprecated     ctermfg=DarkRed       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=DarkYellow  cterm=bold
+  hi @variable ctermfg=Black
 else
   " UI
   hi Added                  ctermfg=Green
@@ -335,8 +335,8 @@ else
   " Diagnostic
   hi DiagnosticError          ctermfg=Red
   hi DiagnosticWarn           ctermfg=Yellow
-  hi DiagnosticInfo           ctermfg=Cyan
-  hi DiagnosticHint           ctermfg=Blue
+  hi DiagnosticInfo           ctermfg=Blue
+  hi DiagnosticHint           ctermfg=Cyan
   hi DiagnosticOk             ctermfg=Green
   hi DiagnosticUnderlineError ctermfg=Red       cterm=underline
   hi DiagnosticUnderlineWarn  ctermfg=Yellow    cterm=underline
@@ -346,7 +346,7 @@ else
   hi DiagnosticDeprecated     ctermfg=Red       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=Magenta  cterm=bold
+  hi @variable ctermfg=White
 endif
 
 " NvimInternalError should appear only when highlighter has a bug.
