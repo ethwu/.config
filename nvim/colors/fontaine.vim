@@ -224,10 +224,10 @@ if &background == 'light'
   hi Search                 ctermfg=Black       ctermbg=Yellow
   hi SignColumn                                 ctermbg=NONE
   hi SpecialKey                                                     cterm=bold,reverse
-  hi SpellBad             guisp=Red    gui=undercurl                 cterm=undercurl
-  hi SpellCap             guisp=Yellow gui=undercurl                 cterm=undercurl
-  hi SpellLocal           guisp=Green  gui=undercurl                 cterm=undercurl
-  hi SpellRare            guisp=Cyan   gui=undercurl                 cterm=undercurl
+  hi SpellBad             guisp=#dd604d gui=undercurl                 cterm=undercurl
+  hi SpellCap             guisp=#f2b843 gui=undercurl                 cterm=undercurl
+  hi SpellLocal           guisp=#9aa762 gui=undercurl                 cterm=undercurl
+  hi SpellRare            guisp=#ef9443 gui=undercurl                 cterm=undercurl
   hi StatusLine           ctermfg=Black                             cterm=bold
   hi StatusLineNC         ctermfg=DarkGray                          cterm=bold
   hi Title                ctermfg=DarkMagenta                       cterm=bold
