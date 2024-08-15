@@ -191,11 +191,11 @@ if &background == 'light'
   " UI
   hi Added                  ctermfg=DarkGreen
   hi Changed                ctermfg=DarkCyan
-  hi ColorColumn                                ctermbg=Gray        cterm=NONE
-  hi Conceal                ctermfg=Gray
+  hi ColorColumn                                ctermbg=7        cterm=NONE
+  hi Conceal                ctermfg=7
   hi CurSearch              ctermfg=White       ctermbg=DarkYellow  cterm=bold
-  hi CursorColumn                               ctermbg=Gray
-  hi CursorLine                                 ctermbg=Gray        cterm=NONE
+  hi CursorColumn                               ctermbg=7
+  hi CursorLine                                 ctermbg=7        cterm=NONE
   hi CursorLineNr           ctermfg=Black                           cterm=bold
   hi DiffAdd                ctermfg=Black       ctermbg=Green
   hi DiffChange             ctermfg=Black       ctermbg=Cyan
@@ -205,12 +205,12 @@ if &background == 'light'
   hi ErrorMsg               ctermfg=DarkRed     ctermbg=NONE        cterm=italic
   hi FloatShadow                                ctermbg=0 blend=80
   hi FloatShadowThrough                         ctermbg=0 blend=100
-  hi Folded                 ctermfg=DarkGray    ctermbg=Gray
-  hi LineNr                 ctermfg=DarkGray
+  hi Folded                 ctermfg=8    ctermbg=7
+  hi LineNr                 ctermfg=8
   hi MatchParen                                                     cterm=bold,underline,reverse
   hi ModeMsg                ctermfg=DarkBlue
   hi MoreMsg                ctermfg=DarkBlue
-  hi NonText                ctermfg=DarkGray
+  hi NonText                ctermfg=8
   hi NormalFloat            ctermfg=NONE        ctermbg=NONE
   hi Pmenu                  ctermfg=White       ctermbg=DarkBlue    cterm=NONE
   hi PmenuSel               ctermfg=White       ctermbg=Blue        cterm=bold blend=0
@@ -229,22 +229,22 @@ if &background == 'light'
   hi SpellLocal           guisp=#9aa762 gui=undercurl                 cterm=undercurl
   hi SpellRare            guisp=#ef9443 gui=undercurl                 cterm=undercurl
   hi StatusLine           ctermfg=Black                             cterm=bold
-  hi StatusLineNC         ctermfg=DarkGray                          cterm=bold
+  hi StatusLineNC         ctermfg=8                          cterm=bold
   hi Title                ctermfg=DarkMagenta                       cterm=bold
   hi Visual                                     ctermbg=Magenta
   hi WarningMsg           ctermfg=DarkYellow                        cterm=italic
   hi WinBar               ctermfg=Black                             cterm=bold
-  hi WinBarNC             ctermfg=DarkGray                          cterm=bold
+  hi WinBarNC             ctermfg=8                          cterm=bold
 
   " Syntax
   hi Constant   ctermfg=DarkBlue
   hi Number     ctermfg=DarkMagenta
   hi Boolean    ctermfg=DarkCyan    cterm=italic
-  hi Operator   ctermfg=DarkGray
+  hi Operator   ctermfg=8
   hi PreProc    ctermfg=DarkBlue    cterm=bold
   hi Macro      ctermfg=DarkRed     cterm=bold
   hi Type       ctermfg=DarkMagenta
-  hi Delimiter  ctermfg=DarkGray
+  hi Delimiter  ctermfg=8
 
   hi Comment    ctermfg=DarkGreen        cterm=italic
   hi String     ctermfg=DarkRed
@@ -261,7 +261,7 @@ if &background == 'light'
   hi DiagnosticInfo           ctermfg=DarkBlue
   hi DiagnosticHint           ctermfg=DarkCyan
   hi DiagnosticOk             ctermfg=DarkGreen
-  hi DiagnosticUnnecessary    ctermfg=Gray          cterm=italic
+  hi DiagnosticUnnecessary    ctermfg=7          cterm=italic
   hi DiagnosticUnderlineError ctermfg=DarkRed       cterm=underline
   hi DiagnosticUnderlineWarn  ctermfg=DarkYellow    cterm=underline
   hi DiagnosticUnderlineInfo  ctermfg=DarkCyan      cterm=underline
@@ -275,11 +275,11 @@ elseif &background == 'dark'
   " UI
   hi Added                  ctermfg=Green
   hi Changed                ctermfg=Cyan
-  hi ColorColumn                                ctermbg=DarkGray    cterm=NONE
-  hi Conceal                ctermfg=DarkGray
+  hi ColorColumn                                ctermbg=8    cterm=NONE
+  hi Conceal                ctermfg=8
   hi CurSearch              ctermfg=Black       ctermbg=Yellow      cterm=bold
-  hi CursorColumn                               ctermbg=DarkGray
-  hi CursorLine                                 ctermbg=DarkGray    cterm=NONE
+  hi CursorColumn                               ctermbg=8
+  hi CursorLine                                 ctermbg=8    cterm=NONE
   hi CursorLineNr           ctermfg=White                           cterm=bold
   hi DiffAdd                ctermfg=White       ctermbg=DarkGreen
   hi DiffChange             ctermfg=White       ctermbg=DarkCyan
@@ -289,12 +289,12 @@ elseif &background == 'dark'
   hi ErrorMsg               ctermfg=Red         ctermbg=NONE        cterm=italic
   hi FloatShadow                                ctermbg=0 blend=80
   hi FloatShadowThrough                         ctermbg=0 blend=100
-  hi Folded                 ctermfg=Gray        ctermbg=DarkGray
-  hi LineNr                 ctermfg=Gray
+  hi Folded                 ctermfg=7        ctermbg=8
+  hi LineNr                 ctermfg=7
   hi MatchParen                                                     cterm=bold,underline,reverse
   hi ModeMsg                ctermfg=Blue
   hi MoreMsg                ctermfg=Blue
-  hi NonText                ctermfg=Gray
+  hi NonText                ctermfg=7
   hi NormalFloat            ctermfg=White       ctermbg=DarkBlue
   hi Pmenu                  ctermfg=White       ctermbg=DarkBlue
   hi PmenuSel               ctermfg=White       ctermbg=Blue        cterm=bold blend=0
@@ -313,24 +313,24 @@ elseif &background == 'dark'
   hi SpellLocal           guisp=Green  gui=undercurl                 cterm=undercurl
   hi SpellRare            guisp=Cyan   gui=undercurl                 cterm=undercurl
   hi StatusLine           ctermfg=White                             cterm=bold
-  hi StatusLineNC         ctermfg=Gray                              cterm=bold
+  hi StatusLineNC         ctermfg=7                              cterm=bold
   hi Title                ctermfg=Yellow                            cterm=bold
   hi Visual                                     ctermbg=DarkMagenta
   hi WarningMsg           ctermfg=Yellow                            cterm=italic
   hi WinBar               ctermfg=White                             cterm=bold
-  hi WinBarNC             ctermfg=Gray                              cterm=bold
+  hi WinBarNC             ctermfg=7                              cterm=bold
 
   " Syntax
   hi Constant   ctermfg=Blue
   hi Number     ctermfg=Magenta
   hi Boolean    ctermfg=Cyan    cterm=italic
-  hi Operator   ctermfg=Gray
+  hi Operator   ctermfg=7
   hi PreProc    ctermfg=Green   cterm=bold
   hi Macro      ctermfg=DarkRed cterm=bold
   hi Type       ctermfg=Green
-  hi Delimiter  ctermfg=Gray
+  hi Delimiter  ctermfg=7
 
-  hi Comment    ctermfg=Gray        cterm=italic
+  hi Comment    ctermfg=7        cterm=italic
   hi String     ctermfg=Blue
   hi Identifier ctermfg=Blue
   hi Function   ctermfg=Green       cterm=italic
