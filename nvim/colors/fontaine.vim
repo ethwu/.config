@@ -243,7 +243,7 @@ if &background == 'light'
   hi Operator   ctermfg=DarkGray
   hi PreProc    ctermfg=DarkBlue    cterm=bold
   hi Macro      ctermfg=DarkRed     cterm=bold
-  hi Type       ctermfg=DarkMagenta cterm=italic
+  hi Type       ctermfg=DarkMagenta
   hi Delimiter  ctermfg=DarkGray
 
   hi Comment    ctermfg=DarkGreen        cterm=italic
@@ -270,12 +270,12 @@ if &background == 'light'
   hi DiagnosticDeprecated     ctermfg=DarkRed       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=DarkGray
+  hi @variable ctermfg=Black  cterm=italic
 elseif &background == 'dark'
   " UI
   hi Added                  ctermfg=Green
   hi Changed                ctermfg=Cyan
-  hi ColorColumn                                ctermbg=DarkGray
+  hi ColorColumn                                ctermbg=DarkGray    cterm=NONE
   hi Conceal                ctermfg=DarkGray
   hi CurSearch              ctermfg=Black       ctermbg=Yellow      cterm=bold
   hi CursorColumn                               ctermbg=DarkGray
@@ -327,7 +327,7 @@ elseif &background == 'dark'
   hi Operator   ctermfg=Gray
   hi PreProc    ctermfg=Green   cterm=bold
   hi Macro      ctermfg=DarkRed cterm=bold
-  hi Type       ctermfg=Green   cterm=bold,italic
+  hi Type       ctermfg=Green
   hi Delimiter  ctermfg=Gray
 
   hi Comment    ctermfg=Gray        cterm=italic
@@ -353,7 +353,7 @@ elseif &background == 'dark'
   hi DiagnosticDeprecated     ctermfg=Red       cterm=strikethrough
 
   " Treesitter standard groups
-  hi @variable ctermfg=Gray
+  hi @variable ctermfg=White  cterm=italic
 endif
 
 " NvimInternalError should appear only when highlighter has a bug.
