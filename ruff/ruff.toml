@@ -1,0 +1,92 @@
+# Enumerate fixed lint violations.
+show-fixes = true
+
+[format]
+# Format code in docstrings.
+docstring-code-format = true
+# Quote style to prefer.
+quote-style = "double"
+skip-magic-trailing-comma = false
+
+[lint]
+# Linting rules to enable.
+select = ["ALL"]
+# Disable reporting error codes.
+ignore = [
+    ## Error ##
+    "E111", # indentation-with-invalid-multiple
+    "E114", # indentation-with-invalid-multiple-comment
+    "E117", # over-indented
+
+    ## Warning ##
+    "W191", # tab-indentation
+
+    ## flake8-boolean-trap ##
+    "FBT",
+
+    ## flake8-commas ##
+    "COM812", # missing-trailing-commas
+    "COM819", # prohibited-trailing-comma
+
+    ## flake8-errmsg ##
+    "EM",
+
+    ## flake8-implicit-str-concat ##
+    "ISC001", # single-line-implicit-string-concatenation
+    "ISC002", # multi-line-implicit-string-concatenation
+
+    ## flake8-quotes ##
+    "Q000", # bad-quotes-inline-string
+    "Q001", # bad-quotes-multiline-string
+    "Q002", # bad-quotes-docstring
+    "Q003", # avoidable-escaped-quote
+
+    ## flynt ##
+    "FLY002", # static-join-to-f-string
+
+    ## pydocstyle ##
+    "D206", # indent-with-spaces
+    "D300", # triple-single-quotes
+
+    ## pyupgrade ##
+    "UP032", # f-string
+    "UP042", # replace-str-enum
+
+    ## tryceratops ##
+    "TRY400", # error-instead-of-exception
+]
+
+## preview rules ##
+
+# Whether to enable rules in preview.
+preview = true
+
+# Mappings from file patterns to rule codes to ignore.
+[lint.extend-per-file-ignores]
+"__init__.py" = [
+    ## pydocstyle ##
+    "D104", # undocumented-public-package
+
+    ## pyflakes ##
+    "F401", # unused-import
+]
+"test*.py" = [
+    ## flake8-bandit ##
+    "S101", # assert
+    "S105", # hardcoded-password-string
+
+    ## pylint ##
+    "PLR2004", # magic-value-comparison
+]
+
+[lint.flake8-quotes]
+# Preferred inline quote type.
+inline-quotes = "double"
+
+[lint.pycodestyle]
+# Format over 88 characters, but report lines more than 100 characters.
+max-line-length = 100
+
+[lint.pydocstyle]
+# Which docstring convention to adhere to.
+convention = "numpy"

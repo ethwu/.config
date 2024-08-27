@@ -155,6 +155,9 @@ hi link @markup.link    Underlined
 hi link @diff.plus  Added
 hi link @diff.minus Removed
 hi link @diff.delta Changed
+hi link diffAdded   DiffAdd
+hi link diffDeleted DiffDelete
+hi link diffChanged DiffChange
 
 hi link @tag         Tag
 hi link @tag.builtin Special

@@ -186,13 +186,13 @@ return {
 			lualine_c = {
 				filename,
 				filesize,
-				diff,
-				diagnostics,
 			},
 			lualine_x = {
-				{ 'encoding',   fmt = trunc(100, 100, 100, false) },
-				{ 'fileformat', fmt = trunc(100, 100, 100, false) },
-				{ 'filetype',   fmt = trunc(80, 80, 80, false) },
+				diff,
+				diagnostics,
+				-- { 'encoding',   fmt = trunc(100, 100, 100, false) },
+				-- { 'fileformat', fmt = trunc(100, 100, 100, false) },
+				-- { 'filetype',   fmt = trunc(80, 80, 80, false) },
 			},
 			lualine_y = { { progress, padding = 0, fmt = trunc(80, 80, 80, false) } },
 			lualine_z = {
@@ -205,8 +205,8 @@ return {
 		inactive_sections = {
 			lualine_a = { inactive },
 			lualine_b = {},
-			lualine_c = { filename, filesize, diff, diagnostics },
-			lualine_x = {},
+			lualine_c = { filename, filesize, },
+			lualine_x = { diff, diagnostics, },
 			lualine_y = { { progress, padding = 0, fmt = trunc(80, 80, 80, false) } },
 			lualine_z = {
 				{ 'location', icons_enabled = true, icon = '' },
