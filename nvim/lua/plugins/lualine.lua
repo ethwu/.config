@@ -21,7 +21,7 @@ local theme = {
 		a = { fg = 15, bg = 4, gui = 'italic' },
 		b = { fg = 15, bg = 3 },
 		c = { gui = 'italic' },
-		y = { fg = 15, bg = 7 },
+		y = { fg = 7 },
 		z = { fg = 15, bg = 4 },
 	}
 }
@@ -133,17 +133,17 @@ local filesize = {
 	padding = { left = 0, right = 1 },
 	color = { gui = 'None' },
 }
-local lineno = { function() return vim.fn.line '.' end, icons_enabled = true, icon = '', } -- separator = '', padding = { left = 1, right = 0 } }
-local colno = { function() return vim.fn.charcol '.' end, icons_enabled = true, icon = '' }
-local readonly = { "''", cond = function() return vim.bo[vim.api.nvim_win_get_buf(0)].readonly end }
+-- local lineno = { function() return vim.fn.line '.' end, icons_enabled = true, icon = '', } -- separator = '', padding = { left = 1, right = 0 } }
+-- local colno = { function() return vim.fn.charcol '.' end, icons_enabled = true, icon = '' }
+-- local readonly = { "''", cond = function() return vim.bo[vim.api.nvim_win_get_buf(0)].readonly end }
 local windowno = { "vim.api.nvim_win_get_number(0)", color = { bg = colors.magenta }, cond = function() return #vim.api
 	.nvim_list_wins() > 1 end }
 -- improved progress impl based on
 -- https://github.com/verigak/progress/blob/52de04b95db27fc7db32f81b9fd0887e32af9d00/progress/bar.py#L71
 local progress_width = 4
 local progress_indicator_styles = {
-	braille = { '⠁', '⠃', '⠇', '⡇', '⡏', '⡟', '⡿', '⣿', },
-	shading = { '░', '▒', '▓', '█', },
+	-- braille = { '⠁', '⠃', '⠇', '⡇', '⡏', '⡟', '⡿', '⣿', },
+	-- shading = { '░', '▒', '▓', '█', },
 	block = { '▏', '▎', '▍', '▌', '▋', '▊', '▉', '█', },
 }
 local progress_indicators = progress_indicator_styles['block']
