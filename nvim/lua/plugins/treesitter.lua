@@ -17,7 +17,7 @@ return {
     },
     dependencies = {
         -- NOTE: additional parser
-        -- { "nushell/tree-sitter-nu" },
+        { "nushell/tree-sitter-nu" },
         { "IndianBoy42/tree-sitter-just", opts = {} },
     },
     build = ":TSUpdate",
