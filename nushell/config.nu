@@ -1,6 +1,6 @@
 # Nushell Config File
 #
-# version = "0.93.1"
+# version = "0.98.0"
 
 # Get `catalina` theme.
 use ./theme
@@ -38,6 +38,13 @@ $env.config = {
     }
 
     error_style: "fancy" # "fancy" or "plain" for screen reader-friendly error messages
+
+    display_errors: {
+        exit_code: false # assume the external command prints an error message
+        # Core dump errors are always printed, and SIGPIPE never triggers an error.
+        # The setting below controls message printing for termination by all other signals.
+        termination_signal: true
+    }
 
     # datetime_format determines what a datetime rendered in the shell would look like.
     # Behavior without this configuration point will be to "humanize" the datetime display,
@@ -96,7 +103,6 @@ $env.config = {
     }
 
     color_config: (theme catalina) # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
-    use_grid_icons: false
     footer_mode: "20" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "vi" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
