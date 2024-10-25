@@ -275,6 +275,20 @@ hi link DiagnosticSignHint         DiagnosticHint
 hi link DiagnosticSignOk           DiagnosticOk
 hi link DiagnosticUnnecessary      Comment
 
+" Rainbow delimiters
+hi red ctermfg=Red
+hi green ctermfg=Green
+hi yellow ctermfg=Yellow
+hi blue ctermfg=Blue
+hi magenta ctermfg=Magenta
+hi cyan ctermfg=Cyan
+hi darkred ctermfg=DarkRed
+hi darkgreen ctermfg=DarkGreen
+hi darkyellow ctermfg=DarkYellow
+hi darkblue ctermfg=DarkBlue
+hi darkmagenta ctermfg=DarkMagenta
+hi darkcyan ctermfg=DarkCyan
+
 " NvimInternalError should appear only when highlighter has a bug.
 hi NvimInternalError ctermfg=Red ctermbg=Red
 
