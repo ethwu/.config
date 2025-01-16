@@ -83,7 +83,7 @@ export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite/history
 
 # wget
 export WGETRC="$XDG_CONFIG_HOME"/wget/wgetrc
-alias wget='wget --hsts-file="$XDG_STATE_HOME"/wget-hsts"'
+alias wget='wget --hsts-file="$XDG_STATE_HOME"/wget-hsts'
 
 # Wine
 export WINEPREFIX="$XDG_DATA_HOME"/wine

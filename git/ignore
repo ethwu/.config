@@ -4,6 +4,12 @@ attic/
 .env
 .envrc
 
+# Mise.
+mise.local.toml
+mise.*.local.toml
+.mise.local.toml
+.mise.*.local.toml
+
 # Windows thumbnails.
 Thumbs.db
 # macOS Finder metadata.
