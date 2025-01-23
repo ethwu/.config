@@ -165,5 +165,7 @@ export PROMPT3="%F{blue}%B?)%b%f "
 export PROMPT4="%F{green}┆ %N%f:%F{yellow}%i%f "
 # change partial line output marker
 export PROMPT_EOL_MARK="%S‡%s"
+export PROMPT_EOL_MARK="%S⚑%s"
+export PROMPT_EOL_MARK="%S⚐%s"
 
 

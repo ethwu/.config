@@ -21,12 +21,18 @@ ignore = [
     ## Warning ##
     "W191", # tab-indentation
 
+    ## flake8-annotations ##
+    "ANN401", # any-type
+
     ## flake8-boolean-trap ##
     "FBT",
 
     ## flake8-commas ##
     "COM812", # missing-trailing-commas
     "COM819", # prohibited-trailing-comma
+
+    ## flake8-copyright ##
+    "CPY001", # missing-copyright-notice
 
     ## flake8-errmsg ##
     "EM",
@@ -41,6 +47,9 @@ ignore = [
     "Q002", # bad-quotes-docstring
     "Q003", # avoidable-escaped-quote
 
+    ## flake8-use-pathlib ##
+    "PTH123", # builtin-open
+
     ## flynt ##
     "FLY002", # static-join-to-f-string
 
@@ -49,6 +58,7 @@ ignore = [
     "D300", # triple-single-quotes
 
     ## pyupgrade ##
+    "UP015", # redundant-open-modes
     "UP032", # f-string
     "UP042", # replace-str-enum
 

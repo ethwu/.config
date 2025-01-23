@@ -11,7 +11,7 @@ do {
     "" | save --force $plugin_config
 
     # Load a shell plugin (if it's available).
-    def load-plugin [cmd: string, ...args: string] [nothing -> string, string -> string] {
+    def load-plugin [cmd: string, ...args: string] {
         if (which $cmd | is-not-empty) {
             "source '" + ($plugin_prefix | path join $"($cmd).nu") + "'\n" | save --append $plugin_config
             ^$cmd ...$args

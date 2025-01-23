@@ -1,7 +1,7 @@
 #! /usr/bin/env -S nu --stdin
 
 # Interpolate environment variables into the given string.
-export def main [str: string = ""] [nothing -> string, string -> string] {
+export def main [str: string = ""] : [nothing -> string, string -> string] {
     # https://github.com/nushell/nushell/issues/12750#issuecomment-2093608578
     mut str = if $str == "" { $in } else { $str }
     loop {

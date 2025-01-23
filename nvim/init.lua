@@ -38,6 +38,8 @@ require("lazy").setup("plugins", {
 
 -- disallow :autocmd, shell, and write commands in local rc
 vim.opt.secure = true
+-- use POSIX shell
+vim.opt.shell = '/bin/sh'
 
 -- indentation
 local tab_width = 4
@@ -128,8 +130,8 @@ vim.opt.wildmenu = true
 vim.opt.laststatus = 2
 -- hide the mode
 vim.opt.showmode = false
--- hide the tabline when there's only one tab
-vim.opt.showtabline = 1
+-- do not show the tabline
+vim.opt.showtabline = 0
 
 -- netrw
 vim.g.netrw_keepdir = 0

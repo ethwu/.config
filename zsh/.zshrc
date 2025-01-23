@@ -84,7 +84,7 @@ setopt auto_menu
 setopt auto_list
 
 # setopt auto_cd
-setopt extended_glob
+# setopt extended_glob
 # allow ** to be equal to **/* and *** to be equal to ***/*
 setopt glob_star_short
 

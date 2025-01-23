@@ -27,13 +27,14 @@ module prompt_segment {
         (ansi reset) + (ansi $color) + ($exit_code | into string)
     }
 
-    # Get the current `nushell` shell number.
-    export def shell [] {
-        let s = shells
-        if ($s | length) <= 1 { return "" }
-        let this_shell = ($s | enumerate | where item.active | first)
-        $"(ansi reset)[(ansi cyan_bold)($this_shell.index)(ansi reset)]"
-    }
+    # Uses the deprecated `std/dirs` functionality.
+    # # Get the current `nushell` shell number.
+    # export def shell [] {
+    #     let s = shells
+    #     if ($s | length) <= 1 { return "" }
+    #     let this_shell = ($s | enumerate | where item.active | first)
+    #     $"(ansi reset)[(ansi cyan_bold)($this_shell.index)(ansi reset)]"
+    # }
 
     # Get the time in magenta with green separators and am/pm underlined.
     export def time [] {
@@ -118,7 +119,7 @@ module prompt_segment {
         ] | filter { is-not-empty } | str join " ")
     }
 
-    def colorize_working_directory [separator_color: string, path_color: string] string -> string {
+    def colorize_working_directory [separator_color: string, path_color: string]: string -> string {
         str replace --all (char path_sep) (
             $separator_color + (char path_sep) + $path_color
         )
@@ -130,7 +131,7 @@ module prompt_segment {
         let path_color = ((ansi reset) + (if (is-admin) { ansi blue_italic } else { ansi green_italic }))
         let separator_color = ((ansi reset) + (if (is-admin) { ansi light_blue_italic } else { ansi light_green_italic }))
         let home = (if (is-admin) { (ansi light_blue_bold) + $nu.home-path } else { $tilde })
-        match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+        match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
             null => ($env.PWD | colorize_working_directory $separator_color $path_color)
             '' => $home
             $relative_pwd => ([
@@ -153,9 +154,9 @@ def bracket [segment: string] {
 }
 
 # Generate the left prompt.
-export def left [] -> string {
+export def left []: nothing -> string {
     ([
-        (prompt_segment shell)
+        # (prompt_segment shell)
         (prompt_segment last_exit_code)
         (bracket (prompt_segment working_directory))
         (bracket (prompt_segment vcs))
@@ -164,7 +165,7 @@ export def left [] -> string {
 }
 
 # Generate the right prompt.
-export def right [] -> string {
+export def right []: nothing -> string {
     ([
         (if (which direnv | is-not-empty) { prompt_segment direnv })
         (prompt_segment duration)
@@ -176,7 +177,7 @@ export def right [] -> string {
 def exit_code_highlight [
     success_color: string = ""  # Color to use on a success
     failure_color: string = "" # Color to use on a failure
-] nothing -> string {
+]: nothing -> string {
     if $env.LAST_EXIT_CODE == 0 {
         $"(if $success_color != "" {ansi $success_color})"
     } else {
@@ -185,17 +186,17 @@ def exit_code_highlight [
 }
 
 # Get the prompt character.
-export def character [] nothing -> string {
+export def character []: nothing -> string {
     if (is-admin) { "#" } else { ">" }
 }
 
 # Set the prompt character.
-export def --env "character set-env" [] nothing -> nothing {
+export def --env "character set-env" []: nothing -> nothing {
     $env.PROMPT_CHARACTER = (character)
 }
 
 # Get the prompt indicator.
-export def indicator [] nothing -> string {
+export def indicator []: nothing -> string {
     ((char space) +
         (exit_code_highlight blue_bold red_bold) +
         $env.PROMPT_CHARACTER +
@@ -209,32 +210,32 @@ export def "indicator multiline" [] {
 }
 
 # Get the prompt indicator for `vi` insert mode.
-export def "indicator vi insert" [] -> string {
+export def "indicator vi insert" []: any -> string {
     indicator
 }
 
 # Get the prompt indicator for `vi` normal mode.
-export def "indicator vi normal" [] -> string {
+export def "indicator vi normal" []: any -> string {
     $" (exit_code_highlight green_bold)($env.PROMPT_CHARACTER)(ansi reset) "
 }
 
 # Get the prompt indicator for searching the menu.
-export def "indicator menu" [] -> string {
+export def "indicator menu" []: any -> string {
     $" (ansi yellow_bold)|(ansi reset) "
 }
 
 # Get the prompt indicator for the history.
-export def "indicator history" [] -> string {
+export def "indicator history" []: any -> string {
     $" (ansi blue_bold)?(ansi reset) "
 }
 
 # Get the prompt indicator for searching the help.
-export def "indicator help" [] -> string {
+export def "indicator help" []: any -> string {
     $" (ansi purple_bold)?(ansi reset) "
 }
 
 # Set up the prompt.
-export def --env setup [] nothing -> nothing {
+export def --env setup []: nothing -> nothing {
     $env.PROMPT_COMMAND = { left }
     $env.PROMPT_COMMAND_RIGHT = { right }
 

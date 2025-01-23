@@ -66,14 +66,14 @@ export const colors = {
         "cyan",
         "light_red",
         "red"
-    ]
+    ],
 }
 
 # Get a color from the gradients list using the given thresholds.
 export def get-gradient-color [
     thresholds: list<any>,                      # A list of thresholds in ascending order
     gradient: list<string> = $colors.gradient   # The gradient to follow
-] any -> string {
+] : any -> string {
     # The value to check against the thresholds.
     let value = $in
     let matches = ($thresholds | enumerate | where $value < $it.item)
@@ -87,22 +87,22 @@ export def get-gradient-color [
 }
 
 # Colorizer for booleans.
-export def bool [] bool -> string {
+export def bool [] : bool -> string {
     if $in { $colors.type.bool.true } else { $colors.type.bool.false }
 }
 
 # Colorizer for durations.
-export def time-elapsed [] duration -> string {
+export def time-elapsed [] : duration -> string {
     get-gradient-color [ 1ns, 1us, 1ms, 1sec, 1min, 15min, 1hr, 12hr, 1day, 4day, 1wk, 4wk, 178day, 356day ]
 }
 
 # Colorizer for datetimes.
-export def date-time [] datetime -> string {
+export def date-time [] : datetime -> string {
      ((date now) - $in | math abs) | time-elapsed
 }
 
 # Colorizer for file sizes.
-export def file-size [] filesize -> string {
+export def file-size [] : filesize -> string {
     get-gradient-color [ 1B, 10B, 100B, 1KiB, 10KiB, 50KiB, 100KiB, 1MiB, 10MiB, 100MiB, 1GiB, 10GiB, 100GiB, 1TiB ]
 } 
 
@@ -168,4 +168,5 @@ export def main [] { return {
     shape_table: $colors.punctuation.record
     shape_variable: $colors.language.variable
     shape_vardecl: $colors.language.variable
+    shape_raw_string: $colors.type.string.path
 }}

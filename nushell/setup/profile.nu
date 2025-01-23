@@ -4,7 +4,7 @@ export-env {
     use ($nu.default-config-dir | path join scripts env-string.nu)
 
     # Load environment variables from `env.toml`.
-    def --env load-environment [] string -> nothing {
+    def --env load-environment []: string -> nothing {
         ($in
             | transpose key value
             | update value { env-string }
