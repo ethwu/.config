@@ -5,6 +5,8 @@
 # Get `catalina` theme.
 use ./theme
 
+$env.config.color_config = (theme catalina)
+
 # Hide the welcome banner.
 $env.config.show_banner = false
 
@@ -121,14 +123,6 @@ $env.config.menus ++= [
 ]
 
 $env.config.keybindings ++= [
-    {
-        # IDE-style menu.
-        name: open_menu
-        modifier: control
-        keycode: char_a
-        mode: [emacs vi_insert vi_normal]
-        event: { send: submit }
-    }
     {
         # IDE-style menu.
         name: open_menu

@@ -19,8 +19,8 @@ export const colors = {
         },
         "string": {
             "binary": "blue_bold",
-            "literal": "purple_italic",
-            "path": "light_green"
+            "literal": "light_green",
+            "path": "purple"
         },
         "time": "yellow"
     },
