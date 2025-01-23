@@ -18,14 +18,15 @@ zshrc-cache-env-setup-of() {
     fi
 }
 
+zshrc-cache-env-setup-of direnv hook zsh
+zshrc-cache-env-setup-of mise activate zsh
+
+zshrc-cache-env-setup-of fzf --zsh
 zshrc-cache-env-setup-of zoxide init zsh --cmd k
 # Correct the autocompletion function name.
 function __zoxide_k_complete() {
     exec __zoxide_z_complete "$@"
 }
-zshrc-cache-env-setup-of direnv hook zsh
-zshrc-cache-env-setup-of fzf --zsh
-zshrc-cache-env-setup-of mise activate zsh
 
 [[ -f "$ZDOTDIR/local/plugins.zsh" ]] && source "$ZDOTDIR/local/plugins.zsh"
 
