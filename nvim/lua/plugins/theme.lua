@@ -1,3 +1,3 @@
-vim.cmd.colorscheme('focalors')
+vim.cmd.colorscheme('midori')
 return {}
 
