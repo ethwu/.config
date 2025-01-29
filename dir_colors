@@ -128,19 +128,19 @@ NORMAL          00  # normal text
 # files
 FILE                    00          # regular file          normal
 DIR                     34;01       # directory             bold blue
-OTHER_WRITABLE          35;01       # ...other-writable     bold magenta
-STICKY                  34;01;04    # ...sticky             bold underlined blue
-STICKY_OTHER_WRITABLE   35;01;04    # ...sticky & other-wr. bold underlined magenta
-EXEC                    32;01       # executable            bold green
-SETGID                  31;01;03    # ...w/ setgid          bold italic red
-SETUID                  31;01;04;03 # ...w/ setuid          bold underlined italic red
-CAPABILITY              32;01;04    # ...w/ capability      bold underlined green
+OTHER_WRITABLE          35;01;04    # ...other-writable     bold underlined blue
+STICKY                  34;01;01    # ...sticky             bold italic blue
+STICKY_OTHER_WRITABLE   35;01;04;03 # ...sticky & other-wr. bold underlined italic blue
+EXEC                    32          # executable            green
+SETGID                  31;01;03    # ...w/ setgid          bold italic green
+SETUID                  31;01;04    # ...w/ setuid          bold underlined green
+CAPABILITY              32;03       # ...w/ capability      bold green
 
 # links
 LINK            36;03   # symlink           italic cyan
 MULTIHARDLINK   36      # hardlink          cyan
 ORPHAN          36;07   # orphaned symlink  reversed cyan
-MISSING         31;04   # ...missing file   underlined red
+MISSING         31;07   # ...missing file   reversed red
 # devices
 FIFO            32;07   # pipe              reversed green
 SOCK            33;07   # socket            reversed yellow
@@ -148,72 +148,82 @@ BLOCK           34;07   # block device      reversed blue
 CHAR            35;07   # character device  reversed magenta
 DOOR            07      # solaris door      reversed
 
+#   Normal  Italic  Bold    Underl. Reverse Bld/Rev Bld/Itl Bld/Ul  Itl/Ul  Dimmed
+#no File    compres                 Door                                    temp
+#re code    script                  Missing                                 module
+#gr Exec.   exe fil Capa.   dist    FIFO            setgid  setuid
+#ye docum   audio   build   image   Sock                            video   rcfiles
+#bl archive cmp arc Direc.  Othr-Wr Block           Sticky  Othr-Wr s+ow
+#ma text    config  readme                                                  data
+#cy Hardlnk Symlink                 Orphan
+
+
 ## Extensions ##
 
-# archive: underlined blue
+# archive: blue 
 *.tar   34
-# compressed: underlined magenta
-*.7z 35;01
-*.ace 35;01
-*.alz 35;01
-*.arc 35;01
-*.arj 35;01
-*.bz 35;01
-*.bz2 35;01
-*.cab 35;01
-*.cbio 35;01
-*.dz 35;01
-*.ear 35;01
-*.gz 35;01
-*.jar 35;01
-*.lha 35;01
-*.lrz 35;01
-*.lz 35;01
-*.lz4 35;01
-*.lzh 35;01
-*.lzma 35;01
-*.rar 35;01
-*.war 35;01
-*.xz 35;01
-*.z 35;01
-*.Z 35;01
-*.zip 35;01
-*.zoo 35;01
-*.zst 35;01
-# tarball: underlined bold magenta
-*.tar.7z 35;01;04
-*.tar.bz 35;01;04
-*.tar.bz2 35;01;04
-*.tar.gz 35;01;04
-*.tar.lz 35;01;04
-*.tar.lz4 35;01;04
-*.tar.lzh 35;01;04
-*.tar.lzma 35;01;04
-*.tar.rar 35;01;04
-*.tar.xz 35;01;04
-*.tar.z 35;01;04
-*.tar.zo 35;01;04
-*.tar.zst 35;01;04
-*.taz 35;01;04
-*.tbz 35;01;04
-*.tbz2 35;01;04
-*.tgz 35;01;04
-*.tlz 35;01;04
-*.txz 35;01;04
-*.tz 35;01;04
-*.tzo 35;01;04
-*.tzst 35;01;04
-# distribution format: underlined italic green
-*.deb 32;03;04
-*.rpm 32;03;04
-# executable file: underlined green
-*.app 32;04
-*.bat 32;04
-*.btm 32;04
-*.cmd 32;04
-*.com 32;04
-*.exe 32;04
-*.reg 32;04
+# compressed: italic
+*.7z 03
+*.ace 03
+*.alz 03
+*.arc 03
+*.arj 03
+*.bz 03
+*.bz2 03
+*.cab 03
+*.cbio 03
+*.dz 03
+*.ear 03
+*.gz 03
+*.jar 03
+*.lha 03
+*.lrz 03
+*.lz 03
+*.lz4 03
+*.lzh 03
+*.lzma 03
+*.rar 03
+*.war 03
+*.xz 03
+*.z 03
+*.Z 03
+*.zip 03
+*.zoo 03
+*.zst 03
+# tarball: italic blue
+*.tar.7z 34;03
+*.tar.bz 34;03
+*.tar.bz2 34;03
+*.tar.gz 34;03
+*.tar.lz 34;03
+*.tar.lz4 34;03
+*.tar.lzh 34;03
+*.tar.lzma 34;03
+*.tar.rar 34;03
+*.tar.xz 34;03
+*.tar.z 34;03
+*.tar.zo 34;03
+*.tar.zst 34;03
+*.taz 34;03
+*.tbz 34;03
+*.tbz2 34;03
+*.tgz 34;03
+*.tlz 34;03
+*.txz 34;03
+*.tz 34;03
+*.tzo 34;03
+*.tzst 34;03
+# distribution format: underlined green
+*.deb 32;04
+*.rpm 32;04
+# executable file: italic green
+*.app 32;03
+*.bat 32;03
+*.btm 32;03
+*.cmd 32;03
+*.com 32;03
+*.exe 32;03
+*.reg 32;03
 
 # ignorable files: dimmed
 *~ 02
@@ -333,15 +343,18 @@ DOOR            07      # solaris door      reversed
 *.c 31
 *.C 31
 *.cc 31
+*.cpp 31
 *.css 31
 *.cxx 31
 *.el 31
 *.go 31
 *.h 31
+*.hpp 31
 *.hs 31
 *.htm 31
 *.html 31
 *.java 31
+*.js 31
 *.l 31
 *.man 31
 *.mkd 31
@@ -352,19 +365,21 @@ DOOR            07      # solaris door      reversed
 *.pl 31
 *.pm 31
 *.pod 31
+*.py 31
 *.rb 31
 *.rdf 31
+*.rkt 31
 *.rs 31
 *.shtml 31
+*.ts 31
 *.tex 31
 *.vim 31
-# module files: dimmed italic red
-*__init__.py 31;02;03
-*mod.rs 31;02;03
+# module files: dimmed red
+*__init__.py 31;02
+*mod.rs 31;02
 # scripts: italic red
 *.bash 31;03
 *.csh 31;03
-*.py 31;03
 *.nu 31;03
 *.sh 31;03
 *.zsh 31;03
@@ -374,77 +389,93 @@ DOOR            07      # solaris door      reversed
 *.o 02
 *.pyc 02
 
-# text and documentation: italic blue
-*.md 34;03
-*.org 34;03
-*.rst 34;03
-*.rtf 34;03
-*.txt 34;03
+# text and documentation: magenta
+*.md 35;01
+*.org 35;01
+*.rst 35;01
+*.rtf 35;01
+*.txt 35;01
 
-# data (text): magenta
-*.csv 35
-*.json 35
-*.tsv 35
-*.xml 35
+# data (text): dimmed magenta
+*.csv 35;02
+*.json 35;02
+*.tsv 35;02
+*.xml 35;02
+
+# logs: dimmed
+*.log 02
 
 # configuration: italic magenta
 *.cfg 35;03
 *.conf 35;03
 *.config 35;03
 *.ini 35;03
+*.properties 35;03
 *.toml 35;03
 *.yaml 35;03
 *.yml 35;03
 
-# build scripts: bold underlined yellow
-*configure 33;01;04
-*Dockerfile 33;01;04
-*install 33;01;04
-*.just 33;01;04
-*justfile 33;01;04
-*Makefile 33;01;04
-*.mk 33;01;04
-# build config: bold yellow
-*Cargo.toml 33;01;04
-*CMakeLists.txt 33;01
-*MANIFEST.in 33;01
-*package.json 33;01
-*pyproject.toml 33;01
-*requirements.txt 33;01
-*requirements-dev.txt 33;01
-*requirements-build.txt 33;01
-*setup.cfg 33;01
-*setup.py 33;01
+# build scripts: bold yellow
+*configure 33;03
+*Dockerfile 33;03
+*install 33;03
+*Jenkinsfile 33;03
+*.just 33;03
+*justfile 33;03
+*Makefile 33;03
+*.mk 33;03
+# build config: yellow
+*build.xml 33
+*Cargo.toml 33
+*CMakeLists.txt 33
+*compose.yaml 33
+*compose.yml 33
+*MANIFEST.in 33
+*mise.toml 33
+*mise.*.toml 33
+*log4j.xml 33
+*lombok.config 33
+*package.json 33
+*pom.xml 33
+*pyproject.toml 33
+*requirements.txt 33
+*requirements-dev.txt 33
+*requirements-build.txt 33
+*requirements-*.txt 33
+*settings.xml 33
+*setup.cfg 33
+*setup.py 33
+*whitesource.config 33
 # per-machine build files: dimmed bold yellow
 *.git 33;01;02
 *venv 33;01;02
 *virtualenv 33;01;02
-# build files: dimmed yellow
-*.egg-info 33;02
-*.lock 33;02
-*node_modules 33;02
-*__pycache__ 33;02
-# ignore files: yellow
-*ignore 33
-*.gitignore 33
+# build files: dimmed
+*.egg-info 02
+*.lock 02
+*node_modules 02
+*__pycache__ 02
+# ignore files: dimmed yellow
+*ignore 33;02
+*.gitignore 33;02
 # environment files: italic yellow
-*.env 33;02
-*.envrc 33;02
+*.env 33;03
+*.envrc 33;03
 
-# project docs: bold italic yellow
-*CODEOWNERS 33;01;03
-*LICENSE 33;01;03
-*README 33;01;03
-*README.txt 33;01;03
-*README.md 33;01;03
-*README.rst 33;01;03
+# project docs: bold magenta
+*CODEOWNERS 35;01
+*LICENSE 35;02
+*README 35;01
+*README.txt 35;01
+*README.md 35;01
+*README.rst 35;01
 
-# global environment config: dimmed italic red
-*bash_profile 31;02;03
-*bashrc 31;02;03
-*.profile 31;02;03
-*rc 31;02;03
-*zprofile 31;02;03
-*zshenv 31;02;03
-*zshrc 31;02;03
+# global environment config: dimmed yellow
+*bash_profile 33;02
+*bashrc 33;02
+*.profile 33;02
+*rc 33;02
+*zprofile 33;02
+*zshenv 33;02
+*zshrc 33;02
 
