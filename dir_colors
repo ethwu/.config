@@ -390,11 +390,11 @@ DOOR            07      # solaris door      reversed
 *.pyc 02
 
 # text and documentation: magenta
-*.md 35;01
-*.org 35;01
-*.rst 35;01
-*.rtf 35;01
-*.txt 35;01
+*.md 35
+*.org 35
+*.rst 35
+*.rtf 35
+*.txt 35
 
 # data (text): dimmed magenta
 *.csv 35;02
