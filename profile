@@ -88,7 +88,7 @@ alias wget='wget --hsts-file="$XDG_STATE_HOME"/wget-hsts'
 # Wine
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 
-source "$XDG_CONFIG_HOME"/nushell/env.toml
+# source "$XDG_CONFIG_HOME"/nushell/env.toml
 
 if [ -n "$BASH_VERSION" ] ; then
     [ -f "$HOME"/.bashrc ] && . "$HOME"/.bashrc
