@@ -1,4 +1,5 @@
 source_if_exists() { [[ -f "$1" ]] && source "$@" ; }
+[[ -z "$_SOURCED_PROFILE_" ]] && source_if_exists "$HOME"/.profile
 
 # term colors
 export CLICOLOR=1
@@ -110,3 +111,4 @@ if [[ "$EUID" -gt 0 ]] ; then
 fi
 
 typeset -U path cdpath fpath manpath
+

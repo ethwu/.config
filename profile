@@ -1,4 +1,3 @@
-#! /bin/sh
 source_if_exists() { [ -f "$1" ] && . "$@" ; }
 source_if_exists "$HOME/.profile.env"
 
@@ -96,3 +95,4 @@ if [ -n "$BASH_VERSION" ] ; then
 fi
 
 source_if_exists "$HOME"/.local.profile
+export _PROFILE_SOURCED_=1
