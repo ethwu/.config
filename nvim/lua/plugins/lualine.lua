@@ -18,11 +18,11 @@ end
 
 local theme = {
 	normal = {
-		a = { fg = 15, bg = 4, gui = 'italic' },
-		b = { fg = 15, bg = 3 },
+		a = { fg = 0, bg = 4 },
+		b = { fg = 0, bg = 3 },
 		c = { gui = 'italic' },
 		y = { fg = 7 },
-		z = { fg = 15, bg = 4 },
+		z = { fg = 0, bg = 4 },
 	}
 }
 
@@ -109,8 +109,10 @@ local diagnostics = {
 }
 local filename = {
 	'filename',
+	file_status = true,
 	newfile_status = true,
 	separator = '',
+	color = { gui = '' },
 	symbols = {
 		modified = '[+]', readonly = '[-]', unnamed = '[No Name]', newfile = '[New]',
 	}
@@ -136,7 +138,7 @@ local filesize = {
 -- local lineno = { function() return vim.fn.line '.' end, icons_enabled = true, icon = '', } -- separator = '', padding = { left = 1, right = 0 } }
 -- local colno = { function() return vim.fn.charcol '.' end, icons_enabled = true, icon = '' }
 -- local readonly = { "''", cond = function() return vim.bo[vim.api.nvim_win_get_buf(0)].readonly end }
-local windowno = { "vim.api.nvim_win_get_number(0)", color = { bg = colors.magenta }, cond = function() return #vim.api
+local windowno = { "vim.api.nvim_win_get_number(0)", color = { colors = colors.black, bg = colors.magenta }, cond = function() return #vim.api
 	.nvim_list_wins() > 1 end }
 -- improved progress impl based on
 -- https://github.com/verigak/progress/blob/52de04b95db27fc7db32f81b9fd0887e32af9d00/progress/bar.py#L71
