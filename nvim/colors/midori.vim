@@ -195,7 +195,7 @@ Hi NonText ignore
 Hi Special special
 hi link Debug Special
 hi link SpecialComment Special
-hi Tag ctermfg=DarkMagenta cterm=bold,italic,reverse
+Hi Tag value:function
 hi link @tag Tag
 " Comments: light gray italic
 Hi Comment comment
