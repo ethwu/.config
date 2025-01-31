@@ -40,6 +40,7 @@ let s:colors = {
             \ 'hidden':     { 'ctermfg': s:NO, },
             \ 'ignore':     { 'ctermfg': s:lw, },
             \ 'comment':    { 'ctermfg': s:dm, 'cterm': s:it, },
+            \ 'comment:doc':    { 'ctermfg': s:tx, 'cterm': s:NO, },
             \ 'normal':     { 'ctermfg': s:NO, 'ctermbg': s:NO, 'cterm': s:NO, },
             \ 'invalid':    { 'ctermfg': s:bg, 'ctermbg': s:re, },
             \ 'keyword':    { 'ctermfg': s:ye, 'cterm': s:bo, },
@@ -75,6 +76,7 @@ let s:colors = {
             \ 'msg:error':      { 'ctermfg': s:bg, 'ctermbg': s:re, },
             \ 'msg:warning':    { 'ctermfg': s:bg, 'ctermbg': s:ye, },
             \ 'msg:mode':       { 'ctermfg': s:bl, 'ctermbg': s:NO, },
+            \ 'msg:question':   { 'ctermfg': s:gr, },
             \ 'gutter:linenumbers': { 'ctermfg': s:dm },
             \ 'gutter:thisline': { 'ctermfg': s:tx, 'cterm': s:bo },
             \ 'linehighlight': { 'ctermbg': s:lw },
@@ -164,13 +166,13 @@ Hi NormalFloat menu:preview
 Hi Pmenu menu:window
 Hi PmenuSel menu:selected
 Hi PmenuThumb menu:scroll
-hi Question ctermfg=Green cterm=bold,italic
+Hi Question msg:question
 hi QuickFixLine ctermfg=DarkCyan
 hi RedrawDebugClear ctermfg=0 ctermbg=11
 hi RedrawDebugComposed ctermfg=0 ctermbg=10
 hi RedrawDebugRecompose ctermfg=0 ctermbg=9
 hi SignColumn ctermbg=NONE
-hi SpecialKey cterm=bold,reverse
+Hi SpecialKey special
 hi SpellBad cterm=undercurl guisp=#dd604d
 hi SpellCap cterm=undercurl guisp=#f2b843
 hi SpellLocal cterm=undercurl guisp=#9aa762
@@ -200,6 +202,7 @@ hi link @tag Tag
 " Comments: light gray italic
 Hi Comment comment
 hi link SpecialComment Special
+Hi @comment.documentation comment:doc
 " hi Todo ctermfg=DarkMagenta cterm=bold
 hi link @comment Comment
 hi link @lsp.type.comment @comment
@@ -221,6 +224,7 @@ hi link @lsp.type.operator Operator
 " Punctuation and Delimiters
 Hi Delimiter operator
 hi link @punctuation Delimiter
+Hi @punctuation.special operator
 " Macros
 Hi Macro keyword
 Hi PreProc keyword

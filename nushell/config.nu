@@ -2,10 +2,10 @@
 #
 # version = "0.101.0"
 
-# Get `catalina` theme.
+# Get themes.
 use ./theme
 
-$env.config.color_config = (theme catalina)
+$env.config.color_config = (theme midori)
 
 # Hide the welcome banner.
 $env.config.show_banner = false
@@ -150,8 +150,8 @@ $env.config.keybindings ++= [
         event: {
             # Take the first event that triggers.
             until: [
-                # Accept the next word in the history.
-                { send: historyhintwordcomplete }
+                # # Accept the next word in the history.
+                # { send: historyhintwordcomplete }
                 { send: menu name: completion_menu }
                 { send: submit }
             ]
